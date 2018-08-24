@@ -21,7 +21,7 @@ let controllers = require("./controllers");
 // Format of Token
 // AUthorization: Bearer <access_token>
 
-verifyToken = (req, res, next) => {
+const verifyToken = (req, res, next) => {
     // Get auth header value
     const bearerHeader = req.headers['authorization'];
     // CHeck if bearder is undefined
@@ -46,10 +46,9 @@ app.get("/api/users", verifyToken, controllers.user.getAll);
 app.get("/api/users/show/:id", controllers.user.getOne);
 
 app.post("/api/users/create", controllers.user.create);
+app.post("/api/login", controllers.user.login);
 
 app.put("/api/users/update/:username", controllers.user.update);
-
-app.post("/api/login", controllers.user.login);
 
 
 // Server
