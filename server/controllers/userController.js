@@ -1,14 +1,24 @@
+const jwt = require("jsonwebtoken");
 let db = require("../models");
 
 // GET /api/users
 
 const getUsers = (req, res) => {
-    db.User.find({}, (err, users) => {
+    jwt.verify(req.token, 'secretKey', (err, authData) => {
         if (err) {
-            console.log(err);
-            return;
+            res.sendStatus(403);
+        } else {
+            db.User.find({}, (err, users) => {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+                res.json({
+                    users: users,
+                    authData,
+                });
+            })
         }
-        res.json(users);
     })
 }
 
@@ -44,6 +54,22 @@ const createUser = (req, res) => {
     })
 }
 
+// POST /api/users/login 
+
+const userLogin = (req, res) => {
+    const user = {
+        id: 1,
+        username: "gabe",
+        email: "email"
+    }
+
+    jwt.sign({ user: user }, "secretKey", { expiresIn: '30s' }, (err, token) => {
+        res.json({
+            token: token
+        })
+    });
+};
+
 // PUT /api/users/udpate/:username
 
 const updateUser = (req, res) => {
@@ -61,5 +87,6 @@ module.exports = {
     getAll: getUsers,
     getOne: getUser,
     create: createUser,
+    login: userLogin,
     update: updateUser,
 }

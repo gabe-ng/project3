@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.schema;
 
 let FriendsSchema = new Schema({
-    friend_1_id: Number,
-    friend_2_id: Number,
+    friend1_id: Number,
+    friend2_id: Number,
     status: {
         type: Number,
         enums: [
