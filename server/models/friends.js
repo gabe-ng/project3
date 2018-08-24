@@ -7,10 +7,9 @@ let FriendsSchema = new Schema({
     status: {
         type: Number,
         enums: [
-            0,    //'add friend',
-            1,    //'requested',
-            2,    //'pending',
-            3,    //'friends'
+            0,    //'pending
+            1,    //'rejected',
+            2,    //'friends',
         ]
     }
 })

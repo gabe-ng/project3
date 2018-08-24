@@ -12,6 +12,18 @@ const getAllFriends = (req, res) => {
     })
 }
 
+const createFriendship = (req, res) => {
+    let friendship = req.body;
+    db.Friends.create(friendship, (err, createdFriendship) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        res.status(200).json(createdFriendship);
+    })
+}
+
 module.exports = {
-    get: getAllFriends,
+    show: getAllFriends,
+    create: createFriendship,
 }
