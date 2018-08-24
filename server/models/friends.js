@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.schema;
+const Schema = mongoose.Schema;
 
 let FriendsSchema = new Schema({
     friend1_id: Number,

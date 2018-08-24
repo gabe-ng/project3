@@ -5,7 +5,11 @@ mongoose.connect(
 );
 
 let User = require("./user");
+let Post = require("./post");
+let Friends = require("./friends");
 
 module.exports = {
     User: User,
+    Post: Post,
+    Friends: Friends
 }
