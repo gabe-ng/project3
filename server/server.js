@@ -24,7 +24,7 @@ app.get("/api/users/show/:id", controllers.user.getOne);
 
 app.post("/api/users/create", controllers.user.create);
 
-app.put("/api/users/update/:username", controllers.user.getUsers);
+app.put("/api/users/update/:username", controllers.user.update);
 
 // Server
 let port = process.env.PORT || 3001;
