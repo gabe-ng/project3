@@ -12,7 +12,7 @@ const getUsers = (req, res) => {
     })
 }
 
-// GET /api/users/user/:id
+// GET /api/users/show/:id
 
 const getUser = (req, res) => {
     db.User.findById( req.params.id, (err, user) => {
