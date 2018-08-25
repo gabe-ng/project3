@@ -45,10 +45,7 @@ const createUser = (req, res) => {
     if (user) {
       res.status(400).send("Username already exists");
     } else {
-      let newUser = new User({
-
-        
-      });
+      let newUser = new User({});
       newUser.save();
       res.status(200).send("User successfully created");
     }
@@ -58,21 +55,32 @@ const createUser = (req, res) => {
 // POST /api/users/login
 
 const userLogin = (req, res) => {
-  const user = {
-    id: 1,
-    username: "gabe",
-    email: "email"
-  };
-
-  jwt.sign({ user: user }, "secretKey", { expiresIn: "30s" }, (err, token) => {
-    if (err) {
+  db.User.findOne(
+    { username: req.body.username, password: req.body.password },
+    (err, foundUser) => {
+      if (err) {
         console.log(err);
         return;
+      }
+      if (foundUser) {
+        jwt.sign(
+          { user: foundUser },
+          "secretKey",
+          (err, token) => {
+            if (err) {
+              console.log(err);
+              return;
+            }
+            res.json({
+              token: token
+            });
+          }
+        );
+      } else {
+        res.status(400).send("No user found");
+      }
     }
-    res.json({
-      token: token
-    });
-  });
+  );
 };
 
 // PUT /api/users/udpate/:username

@@ -3,7 +3,7 @@ const db = require("../models");
 // POST /api/:post_id/comment/new
 
 const createComment = (req, res) => {
-    let postId = req.body.postId;
+    let postId = req.params.postId;
     let comment = req.body;
     db.User.findById(req.body.userId, (err, foundUser) => {
         if (err) {
