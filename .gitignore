@@ -1,3 +1,4 @@
+# main ignore files
 server/node_modules
 server/config.js
 client/node_modules

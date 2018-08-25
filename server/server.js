@@ -19,7 +19,7 @@ app.use(cors());
 let controllers = require("./controllers");
 
 // Format of Token
-// AUthorization: Bearer <access_token>
+// Authorization: Bearer <access_token>
 
 const verifyToken = (req, res, next) => {
     // Get auth header value
