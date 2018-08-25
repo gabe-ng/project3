@@ -1,4 +1,8 @@
+// load jsonwebtoken and bcrypt
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+
+// load in models
 let db = require("../models");
 
 // GET /api/users
@@ -42,31 +46,58 @@ const createUser = (req, res) => {
       console.log(err);
       return;
     }
+    // if username is found, return bad request
     if (user) {
       res.status(400).send("Username already exists");
-    } else {
-      let newUser = new User({});
-      newUser.save();
-      res.status(200).send("User successfully created");
     }
+    // create new user
+    let newUser = new User({
+      name: req.body.name,
+      username: req.body.username,
+      password_digest: req.body.password
+    });
+
+    // salt and has password with bcryptjs
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(newUser.password_digest, salt, (err, hash) => {
+        if (err) {
+          console.log("Error hasing password: ", err);
+          return;
+        }
+        newUser.password_digest = hash;
+        newUser.save((err, user) => {
+          if (err) {
+            console.log(err);
+            return;
+          }
+          res.json(user);
+        });
+      });
+    });
+
+    newUser.save();
+    res.status(200).send("User successfully created");
   });
 };
 
 // POST /api/users/login
 
 const userLogin = (req, res) => {
-  db.User.findOne(
-    { username: req.body.username, password: req.body.password },
-    (err, foundUser) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      if (foundUser) {
-        jwt.sign(
-          { user: foundUser },
-          "secretKey",
-          (err, token) => {
+  let username = req.body.username;
+  let password_digest = req.body.password;
+  db.User.findOne({ username: username }, (err, foundUser) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+
+    // check for user
+    if (foundUser) {
+      // check password
+      bcrypt.compare(password_digest, user.password_digest).then(isMatch => {
+        if (isMatch) {
+          // user confirmed, send web token
+          jwt.sign({ user: foundUser }, "secretKey", (err, token) => {
             if (err) {
               console.log(err);
               return;
@@ -74,13 +105,13 @@ const userLogin = (req, res) => {
             res.json({
               token: token
             });
-          }
-        );
-      } else {
-        res.status(400).send("No user found");
-      }
+          });
+        }
+      });
+    } else {
+      res.status(404).json({ message: "No user found" });
     }
-  );
+  });
 };
 
 // PUT /api/users/udpate/:username
