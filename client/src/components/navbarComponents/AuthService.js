@@ -3,6 +3,9 @@ import decode from "jwt-decode";
 export default class AuthService {
     constructor(domain) {
         this.domain = domain || `http://localhost:3001`;
+        this.fetch = this.fetch.bind(this);
+        this.login = this.login.bind(this);
+        this.getProfile = this.login.bind(this);
     }
 
     login(username, password) {
@@ -28,7 +31,7 @@ export default class AuthService {
         if(this.loggedIn())
             headers['Authorization'] = `Bearer ${thos.getToken}`
 
-        return this.fetch(url {
+        return this.fetch(url, {
             header,
             ...options
         })
