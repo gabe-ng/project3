@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class Friends extends Component {
   render() {
     return (
-      <div>
+      <div className="homepage-friends">
         <h2>Friends</h2>
       </div>
     );

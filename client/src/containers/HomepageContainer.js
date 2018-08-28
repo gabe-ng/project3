@@ -5,17 +5,18 @@ import Chatbox from "../components/homepageComponents/Chatbox";
 import HomeProfile from "../components/homepageComponents/HomeProfile";
 import PostContainer from "./PostContainer";
 
+import "../styles/homepage.css";
+
 class HomepageContainer extends Component {
   render() {
-    return (
-      <div>
-        <h1>HomepageContainer</h1>
-        <HomeProfile />
-        <Friends />
+    return <div className="homepage-container">
+        <div className="profile-friends-wrap">
+          <HomeProfile />
+          <Friends />
+        </div>
         <PostContainer />
         <Chatbox />
-    </div>
-    );
+      </div>;
   }
 }
 

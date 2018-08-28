@@ -4,8 +4,10 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import ConfigureStore from "./redux/configStore";
-import './styles/index.css';
-import App from './App';
+import App from "./App";
+
+import "./styles/reset.css";
+
 
 import registerServiceWorker from './registerServiceWorker';
 
