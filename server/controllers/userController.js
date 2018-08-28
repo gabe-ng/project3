@@ -41,7 +41,7 @@ const getUser = (req, res) => {
 // POST /api/users/create
 
 const createUser = (req, res) => {
-  db.User.findOne({ username: username }, (err, user) => {
+  db.User.findOne({ username: req.body.username }, (err, user) => {
     if (err) {
       console.log(err);
       return;
@@ -51,7 +51,7 @@ const createUser = (req, res) => {
       res.status(400).send("Username already exists");
     }
     // create new user
-    let newUser = new User({
+    let newUser = new db.User({
       name: req.body.name,
       username: req.body.username,
       password_digest: req.body.password
@@ -75,8 +75,8 @@ const createUser = (req, res) => {
       });
     });
 
-    newUser.save();
-    res.status(200).send("User successfully created");
+    
+    // res.status(200).send("User successfully created");
   });
 };
 
@@ -94,10 +94,14 @@ const userLogin = (req, res) => {
     // check for user
     if (foundUser) {
       // check password
-      bcrypt.compare(password_digest, user.password_digest).then(isMatch => {
+      bcrypt.compare(password_digest, foundUser.password_digest).then(isMatch => {
         if (isMatch) {
           // user confirmed, send web token
-          jwt.sign({ user: foundUser }, "secretKey", (err, token) => {
+          let user = {
+            username: foundUser.username,
+          }
+          
+          jwt.sign({ user: user}, "secretKey", (err, token) => {
             if (err) {
               console.log(err);
               return;

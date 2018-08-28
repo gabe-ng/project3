@@ -3,12 +3,12 @@ import decode from "jwt-decode";
 export default class AuthService {
     constructor(domain) {
         this.domain = domain || `http://localhost:3001`;
-        this.fetch = this.fetch.bind(this);
-        this.login = this.login.bind(this);
-        this.getProfile = this.login.bind(this);
+        // this.fetch = this.fetch.bind(this);
+        // this.login = this.login.bind(this);
+        // this.getProfile = this.login.bind(this);
     }
 
-    login(username, password) {
+    login = (username, password) => {
         return this.fetch(`${this.doman}/login`, {
             method: 'POST',
             body: JSON.stringify({
@@ -18,21 +18,21 @@ export default class AuthService {
         })
         .then(res => {
             this.setToken(res.token);
-            return Promiseresolve(res);
+            return Promise.resolve(res);
         })
     }
 
-    fetch(url, options) {
-        const header = {
+    fetch = (url, options) => {
+        const headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         }
 
         if(this.loggedIn())
-            headers['Authorization'] = `Bearer ${thos.getToken}`
+            headers['Authorization'] = `Bearer ${this.getToken}`
 
         return this.fetch(url, {
-            header,
+            headers,
             ...options
         })
         .then(this._checkStatus)
@@ -70,7 +70,7 @@ export default class AuthService {
         localStorage.removeItem("id_token");
     }
 
-    getProfile() {
+    getProfile = () => {
         return decode(this.getToken());
     }
 
