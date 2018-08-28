@@ -4,14 +4,21 @@ import Bio from "../components/profileComponents/Bio";
 import Stats from "../components/profileComponents/Stats";
 import PostContainer from "./PostContainer";
 
+import "../styles/profile.css";
+
 class ProfileContainer extends Component {
+  state = {
+    postContainerMargin: {
+      margin: "0 auto 0 0"
+    }
+  };
+
   render() {
     return (
-      <div>
-        <h1>ProfileContainer</h1>
+      <div className="profile-container">
         <Bio />
         <Stats />
-        <PostContainer />
+        <PostContainer style={this.state.postContainerMargin} />
       </div>
     );
   }

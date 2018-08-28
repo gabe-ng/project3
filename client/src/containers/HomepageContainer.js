@@ -8,13 +8,19 @@ import PostContainer from "./PostContainer";
 import "../styles/homepage.css";
 
 class HomepageContainer extends Component {
+  state = {
+    postContainerMargin: {
+      margin: "0 auto",
+    }
+  }
   render() {
+
     return <div className="homepage-container">
         <div className="profile-friends-wrap">
           <HomeProfile />
           <Friends />
         </div>
-        <PostContainer />
+        <PostContainer style={this.state.postContainerMargin}/>
         <Chatbox />
       </div>;
   }
