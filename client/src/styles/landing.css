@@ -1,6 +1,5 @@
 /* ******** Landing Container ******** */
 .landing-container {
-    border: 1px solid black;
     width: 100vw;
     height: 90vh;
     display: flex;
