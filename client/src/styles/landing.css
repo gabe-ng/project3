@@ -1,0 +1,17 @@
+/* ******** Landing Container ******** */
+.landing-container {
+    border: 1px solid black;
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.intro-container {
+    border: 1px solid black;
+    margin: 0 5rem;
+    width: 20vw;
+    height: 50vh;
+
+}
