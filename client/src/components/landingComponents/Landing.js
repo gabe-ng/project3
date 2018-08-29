@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 
 import Intro from "./Intro";
-import Login from "./Login";
+import Signin from "./Signin";
 
 import "../../styles/landing.css";
 
@@ -12,7 +12,7 @@ class Landing extends Component {
       <div className="landing-container">
         <h1>Landing</h1>
         <Switch>
-          <Route path="/signin" exact render={props => <Login {...props} currentUser={this.props.currentUser} />} />
+          <Route path="/signin" exact render={props => <Signin {...props} currentUser={this.props.currentUser} />} />
         </Switch>
         <Intro />
       </div>

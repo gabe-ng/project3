@@ -4,13 +4,10 @@ import { NavLink } from "react-router-dom";
 import "../../styles/navbar.css";
 
 class Navbar extends Component {
-    state = {
-        isLoggedIn: false,
-    }
 
   render() {
       let options;
-      if (this.state.isLoggedIn) {
+      if (this.props.loggedIn) {
           options = (<ul>
               <li>
                   <NavLink to="/homepage" activeClassName="active-nav" className="nav-item">

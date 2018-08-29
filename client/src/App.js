@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { withRouter } from "react-router-dom"
+import { connect } from "react-redux";
 
 import setAuthToken from "./utils/setAuthToken";
 import Navbar from "./components/navbarComponents/Navbar";
@@ -11,10 +12,10 @@ import ProfileContainer from "./containers/ProfileContainer";
 
 class App extends Component {
 
-  state = {
-    currentUser: {},
-    isAuthenticated: true,
-  }
+  // state = {
+  //   currentUser: {},
+  //   isAuthenticated: true,
+  // }
 
   componentDidMount = () => {
     let token;
@@ -45,9 +46,11 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state);
+    
     return (
       <div>
-        <Navbar />
+        <Navbar loggedIn={this.props.isAuthenticated}/>
         <Switch>
           <Route path="/profile" exact render={props => <ProfileContainer {...props} />} />
           <Route path="/homepage" exact render={props => <HomepageContainer {...props} />} />
@@ -58,4 +61,11 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+const mapStateToProps = state => {
+  return {
+    currentUser: state.currentUser,
+    isAuthenticated: state.isAuthenticated,
+  }
+}
+
+export default connect(mapStateToProps,)(withRouter(App));
