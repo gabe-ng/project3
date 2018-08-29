@@ -101,7 +101,11 @@ const createUser = (req, res) => {
           });
 
           let user = {
-            username: newUser.username
+            id: newUser._id,
+            name: newUser.name,
+            username: newUser.username,
+            email: newUser.email,
+            joinDate: newUser.joinDate,
           };
 
           jwt.sign({ user: user }, "secretKey", (err, token) => {
@@ -139,7 +143,11 @@ const userLogin = (req, res) => {
           if (isMatch) {
             // user confirmed, send web token
             let user = {
-              username: foundUser.username
+              id: foundUser._id,
+              name: foundUser.name,
+              username: foundUser.username,
+              email: foundUser.email,
+              joinDate: foundUser.joinDate,
             };
 
             jwt.sign({ user: user }, "secretKey", (err, token) => {

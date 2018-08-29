@@ -12,6 +12,7 @@ import ProfileContainer from "./containers/ProfileContainer";
 import AllUsers from "./components/AllUsers";
 
 class App extends Component {
+  state = {};
 
   componentDidMount = () => {    
     let token;
@@ -21,6 +22,7 @@ class App extends Component {
       })
       this.props.history.push("/");
     } else {
+      console.log("token still exists");
       token = jwt_decode(localStorage.getItem("fbct"));
       setAuthToken(localStorage.getItem("fbct"));
       this.setState({
@@ -31,12 +33,15 @@ class App extends Component {
   }
 
   render() {
+    // console.log(this.props.state);
+    console.log('APP State', this.state);
+    
     return <div>
         <Navbar />
         <Switch>
-          <Route path="/profile" exact render={props => <ProfileContainer {...props} />} />
-          <Route path="/homepage" exact render={props => <HomepageContainer {...props} />} />
+          <Route path="/homepage" exact render={props => <HomepageContainer {...props} currentUser={this.props.state.currentUser}/>} />
           <Route path="/allusers" exact render={props => <AllUsers {...props} />} />
+          <Route path="/profile/:user_id" render={props => <ProfileContainer {...props} />} />
           <Route path="/" render={props => <Landing {...props} />} />
         </Switch>
       </div>;
@@ -44,6 +49,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log("mapping state");
+  
   return {
     state: state.authReducer,
   };

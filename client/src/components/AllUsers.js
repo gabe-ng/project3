@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getAllUsers, getUserProfile } from "../redux/actions/userActions";
@@ -10,18 +10,18 @@ class AllUsers extends Component {
         this.props.getAllUsers()
     }
 
-    handleProfileClick = (e) => {
-        e.preventDefault();
-        let id = e.target.getAttribute("data-id");
-        this.props
-            .getUserProfile(id)
-            .then(res => {
-                this.props.history.push("/profile");
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
+    // handleProfileClick = (e) => {
+    //     e.preventDefault();
+    //     let id = e.target.getAttribute("data-id");
+    //     this.props
+    //         .getUserProfile(id)
+    //         .then(res => {
+    //             this.props.history.push("/profile");
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         })
+    // }
 
     render () {
         console.log(this.props.state);
@@ -30,7 +30,7 @@ class AllUsers extends Component {
         if (this.props.state.users) {
             userList = this.props.state.users.users.map(user => {
             return <div key={user.username} className="user-entries">
-                <a href="" data-id={user._id} onClick={this.handleProfileClick}>{user.name}</a>
+                <Link to={`/profile/${user._id}`} data-id={user._id} onClick={this.handleProfileClick}>{user.name}</Link>
               </div>;
             })
          } else {

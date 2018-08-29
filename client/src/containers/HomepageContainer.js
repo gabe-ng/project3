@@ -17,8 +17,8 @@ class HomepageContainer extends Component {
 
     return <div className="homepage-container">
         <div className="profile-friends-wrap">
-          <HomeProfile />
-          <Friends />
+          <HomeProfile currentUser={this.props.currentUser}/>
+          <Friends currentUser={this.props.currentUser}/>
         </div>
         <PostContainer style={this.state.postContainerMargin}/>
         <Chatbox />
