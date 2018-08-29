@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import axios from 'axios';
-import jwt_decode from 'jwt-decode';
+// import axios from 'axios';
+// import jwt_decode from 'jwt-decode';
+import { logIn } from '../../redux/actions/authActions';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 
 
 class Login extends Component {
@@ -27,15 +30,25 @@ class Login extends Component {
             username: this.state.username,
             password: this.state.password,
         }
-        // console.log(userData)
-        axios.post('http://localhost:3001/api/login', userData)
-            .then(res => {
-                console.log(res);
-                localStorage.setItem("fbct", res.data.token);
-                const decoded = jwt_decode(res.data.token);
-                this.props.currentUser(decoded);
+
+        this.props.logIn(userData)
+            .then(() => {
                 this.props.history.push("/homepage");
             })
+            .catch((error)=> {
+                console.log(error);
+            })
+
+
+        // console.log(userData)
+        // axios.post('http://localhost:3001/api/login', userData)
+        //     .then(res => {
+        //         console.log(res);
+        //         localStorage.setItem("fbct", res.data.token);
+        //         const decoded = jwt_decode(res.data.token);
+        //         this.props.currentUser(decoded);
+        //         this.props.history.push("/homepage");
+        //     })
     }
 
     render () {
@@ -52,4 +65,8 @@ class Login extends Component {
     }
 }
 
-export default withRouter(Login);
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({logIn}, dispatch);
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(Login));

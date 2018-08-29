@@ -43,17 +43,8 @@ class App extends Component {
   }
 
   componentDidUpdate = (prevProps, prevState) => {
-    console.log("app updated");
-    
+    console.log("app updated"); 
   }
-  
-  componentWillReceiveProps = ({ state }) => {
-    console.log("in will receive");
-    this.setState({
-      state
-    })
-  }
-  
 
   handleLogout = () => {
    
