@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { withRouter } from "react-router-dom"
 import { connect } from "react-redux";
+import { initialLoad } from "./redux/actions/authActions";
 
 import setAuthToken from "./utils/setAuthToken";
 import Navbar from "./components/navbarComponents/Navbar";
@@ -13,11 +14,12 @@ import ProfileContainer from "./containers/ProfileContainer";
 class App extends Component {
 
   // state = {
-  //   currentUser: {},
-  //   isAuthenticated: true,
+  //   isAuthenticated: false,
   // }
 
   componentDidMount = () => {
+    console.log("app mount");
+    
     let token;
     if (localStorage.getItem("fbct") === null) {
       this.setState({
@@ -39,6 +41,18 @@ class App extends Component {
       current: userData, isAuthenticated: true,
     })
   }
+
+  componentDidUpdate = (prevProps, prevState) => {
+    console.log("app updated");
+    
+  }
+  
+  componentWillReceiveProps = ({ state }) => {
+    console.log("in will receive");
+    this.setState({
+      state
+    })
+  }
   
 
   handleLogout = () => {
@@ -46,26 +60,29 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state);
+    console.log("in app render");
     
-    return (
-      <div>
-        <Navbar loggedIn={this.props.isAuthenticated}/>
+    console.log(this.props.state);
+    
+    return <div>
+        <Navbar />
         <Switch>
           <Route path="/profile" exact render={props => <ProfileContainer {...props} />} />
           <Route path="/homepage" exact render={props => <HomepageContainer {...props} />} />
           <Route path="/" render={props => <Landing {...props} currentUser={this.setCurrentUser} />} />
         </Switch>
-      </div>
-    );
+      <button onClick={this.props.initialLoad}>click me</button>
+      </div>;
   }
 }
 
 const mapStateToProps = state => {
+  console.log("mapping to app");
+  console.log(state.authReducer);
+  
   return {
-    currentUser: state.currentUser,
-    isAuthenticated: state.isAuthenticated,
-  }
-}
+    state: state.authReducer,
+  };
+};
 
-export default connect(mapStateToProps,)(withRouter(App));
+export default withRouter(connect(mapStateToProps, {initialLoad})(App));
