@@ -9,11 +9,6 @@ import Landing from "./components/landingComponents/Landing";
 import HomepageContainer from "./containers/HomepageContainer";
 import ProfileContainer from "./containers/ProfileContainer";
 
-import AuthService from "./utils/AuthService";
-import WithAuth from "./utils/WithAuth";
-
-const Auth = new AuthService();
-
 class App extends Component {
 
   state = {
@@ -46,8 +41,7 @@ class App extends Component {
   
 
   handleLogout = () => {
-    Auth.logout();
-    this.props.history.replace('/signin');
+   
   }
 
   render() {

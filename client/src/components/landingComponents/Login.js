@@ -4,22 +4,14 @@ import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import setAuthToken from '../../utils/setAuthToken';
 
-// import AuthService from '../../utils/AuthService';
 
 class Login extends Component {
     state = {
         username: '',
         password: '',
     }
-    // constructor () {
-    //     super();
-        
-    // }
-    // Auth = new AuthService();
 
     componentWillMount = () => {
-        // if (this.Auth.loggedIn())
-        //     this.props.history.replace('/homepage');
         
     }
 
@@ -31,13 +23,7 @@ class Login extends Component {
 
     handleFormSubmit = (e) => {
         e.preventDefault();
-        // this.Auth.login(this.state.username, this.state.password)
-        //     .then(res => {
-        //         this.props.history.replace('/homepage');
-        //     })
-        //     .catch(error => {
-        //         alert(error);
-        //     })
+        
         const userData = {
             username: this.state.username,
             password: this.state.password,
