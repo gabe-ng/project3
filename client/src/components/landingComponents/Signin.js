@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-// import axios from 'axios';
-// import jwt_decode from 'jwt-decode';
 import { logIn } from '../../redux/actions/authActions';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
@@ -12,11 +10,7 @@ class Login extends Component {
         username: '',
         password: '',
     }
-
-    componentWillMount = () => {
-        
-    }
-
+    
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value,
@@ -38,17 +32,6 @@ class Login extends Component {
             .catch((error)=> {
                 console.log(error);
             })
-
-
-        // console.log(userData)
-        // axios.post('http://localhost:3001/api/login', userData)
-        //     .then(res => {
-        //         console.log(res);
-        //         localStorage.setItem("fbct", res.data.token);
-        //         const decoded = jwt_decode(res.data.token);
-        //         this.props.currentUser(decoded);
-        //         this.props.history.push("/homepage");
-        //     })
     }
 
     render () {

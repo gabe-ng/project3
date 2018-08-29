@@ -1,12 +1,6 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 
-export const initialLoad = () => {
-  return {
-    type: "INITIAL_LOAD"
-  };
-};
-
 export const loggingIn = () => {
     return {
         type: "LOGGING_IN",
@@ -26,6 +20,21 @@ export const logInSuccess = userData => {
     };
 };
 
+export const loggingOut = () => {
+    return {
+        type: "LOGGING_OUT",
+    }
+}
+
+export const logOutSuccess = userData => {
+    return {
+        type: "LOG_OUT_SUCCESS",
+        userData
+    };
+};
+
+
+
 export const logIn = userData => {
   return dispatch => {
 
@@ -41,3 +50,13 @@ export const logIn = userData => {
         .catch(() => dispatch(logInError()));
   };
 };
+
+export const logOut = () => {
+  return dispatch => {
+
+    dispatch(loggingOut());
+
+    return dispatch(logOutSuccess());
+
+  }
+}

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
+import { logOut } from "../../redux/actions/authActions";
 
 import "../../styles/navbar.css";
 
@@ -19,38 +22,35 @@ class Navbar extends Component {
     }
   };
 
+  handleLogout = e => {
+    e.preventDefault();
+
+    this.props.logOut();
+    this.props.history.push("/");
+  }
+
   render() {
     console.log(this.props.state);
 
     let options;
     if (this.props.state.isAuthenticated || this.state.isAuthenticated) {
-      options = (
-        <ul>
+      options = <ul>
           <li>
-            <NavLink
-              to="/homepage"
-              activeClassName="active-nav"
-              className="nav-item"
-            >
+            <NavLink to="/homepage" activeClassName="active-nav" className="nav-item">
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to="/profile"
-              activeClassName="active-nav"
-              className="nav-item"
-            >
+            <NavLink to="/profile" activeClassName="active-nav" className="nav-item">
               Profile
             </NavLink>
           </li>
           <li>
-            <NavLink to="/" className="nav-item nav-logout">
+            <NavLink to="/" onClick={this.handleLogout} className="nav-item nav-logout">
               Logout
             </NavLink>
           </li>
-        </ul>
-      );
+        </ul>;
     } else {
       options = (
         <ul>
@@ -82,6 +82,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(Navbar);
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ logOut }, dispatch);
+}
 
-// export default Navbar;
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));

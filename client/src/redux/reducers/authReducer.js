@@ -34,10 +34,20 @@ const authReducer = (state = defaultAuthState, action) => {
     case 'LOG_IN_SUCCESS':
         // logInSuccess(state, action.userData);
         console.log("logged in successful");
-        let newState = { ...state};
-        newState.isAuthenticated = true;
-        newState.currentUser = action.userData;
-    return newState;
+        let newLoginState = { ...state};
+        newLoginState.isAuthenticated = true;
+        newLoginState.currentUser = action.userData;
+        return newLoginState;
+    case 'LOGGING_OUT':
+        console.log("attempting to log out");
+        return {...state };
+    case 'LOG_OUT_SUCCESS':
+        console.log("logout successfull");
+        localStorage.removeItem("fbct");
+        let newLogoutState = { ...state };
+        newLogoutState.isAuthenticated = false;
+        newLogoutState.currentUser = {};
+        return newLogoutState;
     default:
       return state;
   }

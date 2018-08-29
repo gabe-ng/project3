@@ -3,7 +3,6 @@ import { Switch, Route } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import { withRouter } from "react-router-dom"
 import { connect } from "react-redux";
-import { initialLoad } from "./redux/actions/authActions";
 
 import setAuthToken from "./utils/setAuthToken";
 import Navbar from "./components/navbarComponents/Navbar";
@@ -76,4 +75,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, {initialLoad})(App));
+export default withRouter(connect(mapStateToProps)(App));
