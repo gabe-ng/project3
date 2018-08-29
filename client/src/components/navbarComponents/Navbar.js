@@ -29,8 +29,7 @@ class Navbar extends Component {
   }
 
   render() {
-    console.log(this.props.state);
-
+    
     let options;
     if (this.props.state.isAuthenticated || this.state.isAuthenticated) {
       options = <ul>

@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 let UserSchema = new Schema({
     name: String,
     username: String,
+    email: String,
     password_digest: String,
     joinDate: {
         type: Date,

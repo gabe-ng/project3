@@ -12,13 +12,7 @@ import ProfileContainer from "./containers/ProfileContainer";
 
 class App extends Component {
 
-  // state = {
-  //   isAuthenticated: false,
-  // }
-
-  componentDidMount = () => {
-    console.log("app mount");
-    
+  componentDidMount = () => {    
     let token;
     if (localStorage.getItem("fbct") === null) {
       this.setState({
@@ -35,41 +29,19 @@ class App extends Component {
     }
   }
 
-  setCurrentUser = (userData) => {
-    this.setState({
-      current: userData, isAuthenticated: true,
-    })
-  }
-
-  componentDidUpdate = (prevProps, prevState) => {
-    console.log("app updated"); 
-  }
-
-  handleLogout = () => {
-   
-  }
-
   render() {
-    console.log("in app render");
-    
-    console.log(this.props.state);
-    
     return <div>
         <Navbar />
         <Switch>
           <Route path="/profile" exact render={props => <ProfileContainer {...props} />} />
           <Route path="/homepage" exact render={props => <HomepageContainer {...props} />} />
-          <Route path="/" render={props => <Landing {...props} currentUser={this.setCurrentUser} />} />
+          <Route path="/" render={props => <Landing {...props} />} />
         </Switch>
-      <button onClick={this.props.initialLoad}>click me</button>
       </div>;
   }
 }
 
 const mapStateToProps = state => {
-  console.log("mapping to app");
-  console.log(state.authReducer);
-  
   return {
     state: state.authReducer,
   };

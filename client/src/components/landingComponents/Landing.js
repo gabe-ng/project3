@@ -13,8 +13,8 @@ class Landing extends Component {
       <div className="landing-container">
         <h1>Landing</h1>
         <Switch>
-          <Route path="/signin" render={props => <Signin {...props} currentUser={this.props.currentUser} />} />
-          <Route path="/signup" render={props => <Signup {...props} currentUser={this.props.currentUser} />} />
+          <Route path="/signin" render={props => <Signin {...props} />} />
+          <Route path="/signup" render={props => <Signup {...props} />} />
         </Switch>
         <Intro />
       </div>

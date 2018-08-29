@@ -27,17 +27,16 @@ let db = require("../models");
 // };
 
 const getUsers = (req, res) => {
-  
-      db.User.find({}, (err, users) => {
-        if (err) {
-          console.log(err);
-          return;
-        }
-        res.json({
-          users: users,
-        });
-      });
-    };
+  db.User.find({}, (err, users) => {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    res.json({
+      users: users
+    });
+  });
+};
 // GET /api/users/show/:id
 
 const getUser = (req, res) => {
@@ -53,54 +52,69 @@ const getUser = (req, res) => {
 // POST /api/users/create
 
 const createUser = (req, res) => {
-  db.User.findOne({ username: req.body.username }, (err, foundUser) => {
+  db.User.findOne({ username: req.body.username }, (err, foundUserName) => {
     if (err) {
       console.log(err);
       return;
     }
     // if username is found, return bad request
-    if (foundUser) {
-      res.status(400).send("Username already exists");
-    }
-    // create new user
-    let newUser = new db.User({
-      name: req.body.name,
-      username: req.body.username,
-      password_digest: req.body.password
-    });
-
-    // salt and hash password with bcryptjs
-    bcrypt.genSalt(10, (err, salt) => {
-      bcrypt.hash(newUser.password_digest, salt, (err, hash) => {
+    if (foundUserName) {
+      console.log("userName error")
+      res.status(400).json({ error: "Username already exists" });
+    } else {
+      db.User.findOne({ email: req.body.email }, (err, foundUserEmail) => {
         if (err) {
-          console.log("Error hashing password: ", err);
+          console.log(err);
           return;
         }
-        newUser.password_digest = hash;
-        newUser.save((err, user) => {
-          if (err) {
-            console.log(err);
-            return;
-          }
-        });
-      });
-    });
+        // if email is found, return bad request
+        if (foundUserEmail) {
+          console.log("userEmailerror");
+          console.log(foundUserEmail);
+          
+          res.status(400).json({ error: "Email already in use" });
+        } else {
+          // create new user
+          let newUser = new db.User({
+            name: req.body.name,
+            username: req.body.username,
+            email: req.body.email,
+            password_digest: req.body.password
+          });
 
-    let user = {
-      username: newUser.username,
+          // salt and hash password with bcryptjs
+          bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(newUser.password_digest, salt, (err, hash) => {
+              if (err) {
+                console.log("Error hashing password: ", err);
+                return;
+              }
+              newUser.password_digest = hash;
+              newUser.save((err, user) => {
+                if (err) {
+                  console.log(err);
+                  return;
+                }
+              });
+            });
+          });
+
+          let user = {
+            username: newUser.username
+          };
+
+          jwt.sign({ user: user }, "secretKey", (err, token) => {
+            if (err) {
+              console.log(err);
+              return;
+            }
+            res.json({
+              token: token
+            });
+          });
+        }
+      });
     }
-
-    jwt.sign({ user: user }, "secretKey", (err, token) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      res.json({
-        token: token
-      });
-    });
-    
-
   });
 };
 
@@ -118,24 +132,26 @@ const userLogin = (req, res) => {
     // check for user
     if (foundUser) {
       // check password
-      bcrypt.compare(password_digest, foundUser.password_digest).then(isMatch => {
-        if (isMatch) {
-          // user confirmed, send web token
-          let user = {
-            username: foundUser.username,
-          }
-          
-          jwt.sign({ user: user}, "secretKey", (err, token) => {
-            if (err) {
-              console.log(err);
-              return;
-            }
-            res.json({
-              token: token
+      bcrypt
+        .compare(password_digest, foundUser.password_digest)
+        .then(isMatch => {
+          if (isMatch) {
+            // user confirmed, send web token
+            let user = {
+              username: foundUser.username
+            };
+
+            jwt.sign({ user: user }, "secretKey", (err, token) => {
+              if (err) {
+                console.log(err);
+                return;
+              }
+              res.json({
+                token: token
+              });
             });
-          });
-        }
-      });
+          }
+        });
     } else {
       res.status(404).json({ message: "No user found" });
     }
