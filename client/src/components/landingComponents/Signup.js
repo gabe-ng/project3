@@ -32,11 +32,11 @@ class SignUp extends Component {
 
         } else {
             const userData = { name: this.state.name, username: this.state.username, email: this.state.email, password: this.state.password };
-
             this.props
               .signUp(userData)
-              .then(() => {
-                this.props.history.push("/homepage");
+              .then((response) => {
+                if (response.type !== "SIGN_UP_ERROR")
+                    this.props.history.push("/homepage");
               })
               .catch(error => {
                 console.log(error);

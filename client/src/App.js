@@ -9,6 +9,7 @@ import Navbar from "./components/navbarComponents/Navbar";
 import Landing from "./components/landingComponents/Landing";
 import HomepageContainer from "./containers/HomepageContainer";
 import ProfileContainer from "./containers/ProfileContainer";
+import AllUsers from "./components/AllUsers";
 
 class App extends Component {
 
@@ -35,6 +36,7 @@ class App extends Component {
         <Switch>
           <Route path="/profile" exact render={props => <ProfileContainer {...props} />} />
           <Route path="/homepage" exact render={props => <HomepageContainer {...props} />} />
+          <Route path="/allusers" exact render={props => <AllUsers {...props} />} />
           <Route path="/" render={props => <Landing {...props} />} />
         </Switch>
       </div>;

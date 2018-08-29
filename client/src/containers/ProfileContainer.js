@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
 import Bio from "../components/profileComponents/Bio";
 import Stats from "../components/profileComponents/Stats";
@@ -14,6 +16,8 @@ class ProfileContainer extends Component {
   };
 
   render() {
+    console.log(this.props.state);
+    
     return (
       <div className="profile-container">
         <Bio />
@@ -24,4 +28,14 @@ class ProfileContainer extends Component {
   }
 }
 
-export default ProfileContainer;
+const mapStateToProps = state => {
+  return {
+    state: state.userReducer
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);

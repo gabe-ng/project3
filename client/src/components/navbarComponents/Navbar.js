@@ -29,7 +29,7 @@ class Navbar extends Component {
   }
 
   render() {
-    
+
     let options;
     if (this.props.state.isAuthenticated || this.state.isAuthenticated) {
       options = <ul>
@@ -41,6 +41,11 @@ class Navbar extends Component {
           <li>
             <NavLink to="/profile" activeClassName="active-nav" className="nav-item">
               Profile
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/allusers" activeClassName="active-nav" className="nav-item">
+              All Users
             </NavLink>
           </li>
           <li>

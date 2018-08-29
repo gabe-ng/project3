@@ -37,6 +37,7 @@ const getUsers = (req, res) => {
     });
   });
 };
+
 // GET /api/users/show/:id
 
 const getUser = (req, res) => {
