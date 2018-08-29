@@ -3,21 +3,41 @@ let defaultAuthState = {
     isAuthenticated: false,
 };
 
+// const loggingIn = (state) => {
+//     console.log("attempting to log in");
+//     return {...state };
+// }
+
+// const logInError = (state) => {
+//     console.log("failed to log in");
+//     return {...state};
+// }
+
+// const logInSuccess = (state, userData) => {
+//     console.log("logged in successful");
+//     let newState = { ...state};
+//     newState.isAuthenticated = true;
+//     newState.currentUser = userData;
+//     return newState;
+// }
+
 const authReducer = (state = defaultAuthState, action) => {
   switch (action.type) {
-    // case 'INITIAL_LOAD':
-    //     console.log("in reducer");
-    //     let newState = {...state};
-    //     newState.isAuthenticated = true;
-    //     newState.newKey = "new val";
-    //     console.log(newState);
-    //     return newState;
-    case 'LOG_IN':
-        console.log("in log in");
+    case 'LOGGING_IN':
+        // loggingIn(state);
+        console.log("attempting to log in");
+        return {...state };
+    case 'LOG_IN_ERROR':
+        // logInError(state);
+        console.log("failed to log in");
+        return {...state};
+    case 'LOG_IN_SUCCESS':
+        // logInSuccess(state, action.userData);
+        console.log("logged in successful");
         let newState = { ...state};
         newState.isAuthenticated = true;
         newState.currentUser = action.userData;
-        return newState;
+    return newState;
     default:
       return state;
   }
