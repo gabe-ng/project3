@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
 
-class Login extends Component {
+class SignIn extends Component {
     state = {
         username: '',
         password: '',
@@ -52,4 +52,4 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators({logIn}, dispatch);
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(Login));
+export default withRouter(connect(null, mapDispatchToProps)(SignIn));

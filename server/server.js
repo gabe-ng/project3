@@ -43,11 +43,11 @@ const verifyToken = (req, res, next) => {
 // Routes
 
 // Users
-app.get("/api/users", verifyToken, controllers.user.getAll);
+app.get("/api/users", controllers.user.getAll);
 app.get("/api/users/show/:id", controllers.user.getOne);
 
 app.post("/api/users/create", controllers.user.create);
-app.post("/api/login", controllers.user.login);
+app.post("/api/users/login", controllers.user.login);
 
 app.put("/api/users/update/:username", controllers.user.update);
 

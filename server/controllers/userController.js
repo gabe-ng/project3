@@ -7,11 +7,27 @@ let db = require("../models");
 
 // GET /api/users
 
+// const getUsers = (req, res) => {
+//   jwt.verify(req.token, "secretKey", (err, authData) => {
+//     if (err) {
+//       res.sendStatus(403);
+//     } else {
+//       db.User.find({}, (err, users) => {
+//         if (err) {
+//           console.log(err);
+//           return;
+//         }
+//         res.json({
+//           users: users,
+//           authData
+//         });
+//       });
+//     }
+//   });
+// };
+
 const getUsers = (req, res) => {
-  jwt.verify(req.token, "secretKey", (err, authData) => {
-    if (err) {
-      res.sendStatus(403);
-    } else {
+  
       db.User.find({}, (err, users) => {
         if (err) {
           console.log(err);
@@ -19,13 +35,9 @@ const getUsers = (req, res) => {
         }
         res.json({
           users: users,
-          authData
         });
       });
-    }
-  });
-};
-
+    };
 // GET /api/users/show/:id
 
 const getUser = (req, res) => {
@@ -41,13 +53,13 @@ const getUser = (req, res) => {
 // POST /api/users/create
 
 const createUser = (req, res) => {
-  db.User.findOne({ username: req.body.username }, (err, user) => {
+  db.User.findOne({ username: req.body.username }, (err, foundUser) => {
     if (err) {
       console.log(err);
       return;
     }
     // if username is found, return bad request
-    if (user) {
+    if (foundUser) {
       res.status(400).send("Username already exists");
     }
     // create new user
@@ -57,11 +69,11 @@ const createUser = (req, res) => {
       password_digest: req.body.password
     });
 
-    // salt and has password with bcryptjs
+    // salt and hash password with bcryptjs
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(newUser.password_digest, salt, (err, hash) => {
         if (err) {
-          console.log("Error hasing password: ", err);
+          console.log("Error hashing password: ", err);
           return;
         }
         newUser.password_digest = hash;
@@ -70,13 +82,25 @@ const createUser = (req, res) => {
             console.log(err);
             return;
           }
-          res.json(user);
         });
       });
     });
 
+    let user = {
+      username: newUser.username,
+    }
+
+    jwt.sign({ user: user }, "secretKey", (err, token) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      res.json({
+        token: token
+      });
+    });
     
-    // res.status(200).send("User successfully created");
+
   });
 };
 

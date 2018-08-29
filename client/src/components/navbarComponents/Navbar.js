@@ -24,7 +24,6 @@ class Navbar extends Component {
 
   handleLogout = e => {
     e.preventDefault();
-
     this.props.logOut();
     this.props.history.push("/");
   }
@@ -46,9 +45,9 @@ class Navbar extends Component {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/" onClick={this.handleLogout} className="nav-item nav-logout">
+            <a href="" onClick={this.handleLogout} className="nav-item nav-logout">
               Logout
-            </NavLink>
+            </a>
           </li>
         </ul>;
     } else {

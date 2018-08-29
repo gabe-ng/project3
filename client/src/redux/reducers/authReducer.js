@@ -23,6 +23,18 @@ let defaultAuthState = {
 
 const authReducer = (state = defaultAuthState, action) => {
   switch (action.type) {
+    case 'SIGNING_UP':
+        console.log(("attempting to sign up"));
+        return { ...state };
+    case 'SIGN_UP_ERROR':
+        console.log("failed to sign up");
+        return { ...state };
+    case 'SIGN_UP_SUCCESS':
+        console.log("sign up successfull");
+        let newSignupState = { ...state };
+        newSignupState.isAuthenticated = true;
+        newSignupState.currentUser = action.userData;
+        return newSignupState;
     case 'LOGGING_IN':
         // loggingIn(state);
         console.log("attempting to log in");
