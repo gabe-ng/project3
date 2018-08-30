@@ -10,19 +10,6 @@ class AllUsers extends Component {
         this.props.getAllUsers()
     }
 
-    // handleProfileClick = (e) => {
-    //     e.preventDefault();
-    //     let id = e.target.getAttribute("data-id");
-    //     this.props
-    //         .getUserProfile(id)
-    //         .then(res => {
-    //             this.props.history.push("/profile");
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         })
-    // }
-
     render () {
         console.log(this.props.state);
         
@@ -30,7 +17,7 @@ class AllUsers extends Component {
         if (this.props.state.users) {
             userList = this.props.state.users.users.map(user => {
             return <div key={user.username} className="user-entries">
-                <Link to={`/profile/${user._id}`} data-id={user._id} onClick={this.handleProfileClick}>{user.name}</Link>
+                <Link to={`/profile/${user._id}`} >{user.name}</Link>
               </div>;
             })
          } else {

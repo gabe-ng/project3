@@ -1,5 +1,6 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import setAuthToken from "../../utils/setAuthToken";
 
 export const signingUp = () => {
   return {
@@ -51,6 +52,13 @@ export const logOutSuccess = () => {
     };
 };
 
+export const userStillLoggedIn = (userData) => {
+  return {
+    type: "STILL_LOGGED_IN",
+    userData,
+  }
+}
+
 export const signUp = userData => {
   return dispatch => {
 
@@ -89,6 +97,14 @@ export const logOut = () => {
     dispatch(loggingOut());
 
     return dispatch(logOutSuccess());
+  }
+}
 
+export const stillLoggedIn = () => {
+  return dispatch => {
+    let token = jwt_decode(localStorage.getItem("fbct"));
+    setAuthToken(localStorage.getItem("fbct"));
+
+    dispatch(userStillLoggedIn(token))
   }
 }

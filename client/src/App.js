@@ -1,40 +1,35 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
-import jwt_decode from "jwt-decode";
-import { withRouter } from "react-router-dom"
+import { Switch, Route, withRouter } from "react-router-dom";
+// import jwt_decode from "jwt-decode";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-import setAuthToken from "./utils/setAuthToken";
+// import setAuthToken from "./utils/setAuthToken";
 import Navbar from "./components/navbarComponents/Navbar";
 import Landing from "./components/landingComponents/Landing";
 import HomepageContainer from "./containers/HomepageContainer";
 import ProfileContainer from "./containers/ProfileContainer";
 import AllUsers from "./components/AllUsers";
 
+import { stillLoggedIn } from "./redux/actions/authActions";
+
 class App extends Component {
   state = {};
 
   componentDidMount = () => {    
-    let token;
     if (localStorage.getItem("fbct") === null) {
       this.setState({
         isAuthenticated: false,
       })
       this.props.history.push("/");
     } else {
-      console.log("token still exists");
-      token = jwt_decode(localStorage.getItem("fbct"));
-      setAuthToken(localStorage.getItem("fbct"));
-      this.setState({
-        isAuthenticated: true,
-        currentUser: token
-      })
+      this.props.stillLoggedIn();
     }
   }
 
   render() {
     // console.log(this.props.state);
-    console.log('APP State', this.state);
+    console.log('APP PROP State', this.props.state);
     
     return <div>
         <Navbar />
@@ -56,4 +51,8 @@ const mapStateToProps = state => {
   };
 };
 
-export default withRouter(connect(mapStateToProps)(App));
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ stillLoggedIn }, dispatch);
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

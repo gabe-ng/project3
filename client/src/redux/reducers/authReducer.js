@@ -60,6 +60,12 @@ const authReducer = (state = defaultAuthState, action) => {
         newLogoutState.isAuthenticated = false;
         newLogoutState.currentUser = {};
         return newLogoutState;
+    case 'STILL_LOGGED_IN':
+        console.log("user still logged in");
+        let refreshedState = { ...state };
+        refreshedState.isAuthenticated = true;
+        refreshedState.currentUser = action.userData;
+        return refreshedState;
     default:
       return state;
   }
