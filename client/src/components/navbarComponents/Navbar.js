@@ -3,7 +3,7 @@ import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { logOut } from "../../redux/actions/authActions";
+import { logOut, stillLoggedIn } from "../../redux/actions/authActions";
 
 import "../../styles/navbar.css";
 
@@ -13,14 +13,12 @@ class Navbar extends Component {
   componentDidMount = () => {
     if (localStorage.getItem("fbct") === null) {
       this.setState({
-        isAuthenticated: false
-      });
+        isAuthenticated: false,
+      })
     } else {
-      this.setState({
-        isAuthenticated: true
-      });
+      this.props.stillLoggedIn();
     }
-  };
+  }
 
   handleLogout = e => {
     e.preventDefault();
@@ -29,9 +27,12 @@ class Navbar extends Component {
   }
 
   render() {
-
+    // console.log('Current User', this.props.state.currentUser.user);
+    // let user = this.props.state.currentUser;
+    // console.log(user.user);
+    
     let options;
-    if (this.props.state.isAuthenticated || this.state.isAuthenticated) {
+    if (this.props.authState.isAuthenticated || this.state.isAuthenticated) {
       options = <ul>
           <li>
             <NavLink to="/homepage" activeClassName="active-nav" className="nav-item">
@@ -39,7 +40,7 @@ class Navbar extends Component {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/profile" activeClassName="active-nav" className="nav-item">
+          <NavLink to={`/profile/${this.props.authState.currentUser.user.id}`} activeClassName="active-nav" className="nav-item">
               Profile
             </NavLink>
           </li>
@@ -81,12 +82,12 @@ class Navbar extends Component {
 
 const mapStateToProps = state => {
   return {
-    state: state.authReducer
+    authState: state.authReducer
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ logOut }, dispatch);
+  return bindActionCreators({ logOut, stillLoggedIn }, dispatch);
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));
