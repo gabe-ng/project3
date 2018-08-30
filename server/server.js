@@ -57,7 +57,7 @@ app.get("/api/friends", controllers.friends.show);
 // Posts
 app.get("/api/posts", controllers.post.show);
 
-app.post("/api/posts/new", controllers.post.create);
+app.post("/api/posts/new/:user_id", controllers.post.create);
 
 // Comments
 app.post("/api/:post_id/comment/new", controllers.comment.create);

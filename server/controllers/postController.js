@@ -3,7 +3,9 @@ const db = require("../models");
 // GET /api/posts
 
 const getPosts = (req, res) => {
-    db.Post.find({}, (err, posts) => {
+    db.Post.find({})
+        .populate("user")
+        .exec((err, posts) => {
         if (err) {
             console.log(err);
             return;
@@ -12,11 +14,11 @@ const getPosts = (req, res) => {
     })
 }
 
-// POST /api/posts/new
+// POST /api/posts/new/:user_id
 
 const createPost = (req, res) => {
     let newPost = req.body;
-    let userId = req.body.userId;
+    let userId = req.params.user_id;
     db.Post.create(newPost, (err, createdPost) => {
         if (err) {
             console.log(err);

@@ -30,7 +30,7 @@ const authReducer = (state = defaultAuthState, action) => {
         console.log("failed to sign up");
         return { ...state };
     case 'SIGN_UP_SUCCESS':
-        console.log("sign up successfull");
+        console.log("sign up successful");
         let newSignupState = { ...state };
         newSignupState.isAuthenticated = true;
         newSignupState.currentUser = action.userData;

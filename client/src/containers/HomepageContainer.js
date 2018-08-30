@@ -13,14 +13,15 @@ class HomepageContainer extends Component {
       margin: "0 auto",
     }
   }
-  render() {
+  render() {    
+    console.log(this.props.currentUser);
 
     return <div className="homepage-container">
         <div className="profile-friends-wrap">
           <HomeProfile currentUser={this.props.currentUser}/>
           <Friends currentUser={this.props.currentUser}/>
         </div>
-        <PostContainer style={this.state.postContainerMargin}/>
+      <PostContainer style={this.state.postContainerMargin} currentUser={this.props.currentUser}/>
         <Chatbox />
       </div>;
   }
