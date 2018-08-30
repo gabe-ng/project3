@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import { Switch, Route, withRouter } from "react-router-dom";
-// import jwt_decode from "jwt-decode";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-// import setAuthToken from "./utils/setAuthToken";
 import Navbar from "./components/navbarComponents/Navbar";
 import Landing from "./components/landingComponents/Landing";
 import HomepageContainer from "./containers/HomepageContainer";
