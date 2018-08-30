@@ -32,7 +32,6 @@ class CreatePostForm extends Component {
             console.log(err);
             
         })
-
   };
 
   render() {

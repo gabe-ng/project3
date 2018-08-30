@@ -30,3 +30,20 @@ export const createPost = (post, userId) => {
             .catch(err => dispatch(createPostError()))
     }
 }
+
+export const getPostsSuccess = (posts) => {
+    return {
+        type: "GET_POSTS",
+        posts
+    }
+}
+
+export const getPosts = () => {
+    return dispatch => {
+        return axios.get("http://localhost:3001/api/posts")
+            .then(res => {
+                return dispatch(getPostsSuccess(res.data))
+            })
+            .catch(err => console.log(err))
+    }
+}
