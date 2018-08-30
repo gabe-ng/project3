@@ -34,6 +34,7 @@ const authReducer = (state = defaultAuthState, action) => {
         let newSignupState = { ...state };
         newSignupState.isAuthenticated = true;
         newSignupState.currentUser = action.userData;
+        console.log('Auth Reducer', newSignupState);
         return newSignupState;
     case 'LOGGING_IN':
         // loggingIn(state);

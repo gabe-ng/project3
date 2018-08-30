@@ -27,11 +27,12 @@ const verifyToken = (req, res, next) => {
     // CHeck if bearder is undefined
     if (typeof bearerHeader !== "undefined") {
         // Split at the space
-        const bearer = bearerHeader.split(" ");
-        // Get token from array
-        const bearerToken = bearer[1];
-        // Set the token
-        req.token = bearerToken;
+        // const bearer = bearerHeader.split(" ");
+        // // Get token from array
+        // const bearerToken = bearer[1];
+        // // Set the token
+        // req.token = bearerToken;
+        req.token = bearerHeader;
         // Next middleware
         next();
     } else {
@@ -43,8 +44,8 @@ const verifyToken = (req, res, next) => {
 // Routes
 
 // Users
-app.get("/api/users", controllers.user.getAll);
-app.get("/api/users/show/:id", controllers.user.getOne);
+app.get("/api/users", verifyToken, controllers.user.getAll);
+app.get("/api/users/show/:id", verifyToken, controllers.user.getOne);
 
 app.post("/api/users/create", controllers.user.create);
 app.post("/api/users/login", controllers.user.login);

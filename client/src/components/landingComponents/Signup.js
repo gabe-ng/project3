@@ -35,6 +35,8 @@ class SignUp extends Component {
             this.props
               .signUp(userData)
               .then((response) => {
+                console.log(response);
+                  
                 if (response.type !== "SIGN_UP_ERROR")
                     this.props.history.push("/homepage");
               })

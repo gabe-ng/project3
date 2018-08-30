@@ -7,52 +7,61 @@ let db = require("../models");
 
 // GET /api/users
 
-// const getUsers = (req, res) => {
-//   jwt.verify(req.token, "secretKey", (err, authData) => {
-//     if (err) {
-//       res.sendStatus(403);
-//     } else {
-//       db.User.find({}, (err, users) => {
-//         if (err) {
-//           console.log(err);
-//           return;
-//         }
-//         res.json({
-//           users: users,
-//           authData
-//         });
-//       });
-//     }
-//   });
-// };
-
 const getUsers = (req, res) => {
-  db.User.find({}, (err, users) => {
+  jwt.verify(req.token, "secretKey", (err, authData) => {
     if (err) {
-      console.log(err);
-      return;
+      res.sendStatus(403);
+    } else {
+      db.User.find({}, (err, users) => {
+        if (err) {
+          console.log(err);
+          return;
+        }
+        res.json({
+          users: users,
+          authData
+        });
+      });
     }
-    res.json({
-      users: users
-    });
   });
 };
+
+// const getUsers = (req, res) => {
+//   db.User.find({}, (err, users) => {
+//     if (err) {
+//       console.log(err);
+//       return;
+//     }
+//     res.json({
+//       users: users
+//     });
+//   });
+// };
 
 // GET /api/users/show/:id
 
 const getUser = (req, res) => {
-  db.User.findById(req.params.id, (err, user) => {
+  jwt.verify(req.token, "secretKey", (err, authData) => {
     if (err) {
-      console.log(err);
-      return;
+      res.sendStatus(403);
+    } else {
+      db.User.findById(req.params.id, (err, user) => {
+        if (err) {
+          console.log(err);
+          return;
+        }
+        let userInfo = {
+          name: user.name,
+          username: user.username,
+          email: user.email,
+          joinDate: user.joinDate
+        };
+        res.json({
+          user: userInfo,
+          authData
+        });
+      });
     }
-    let userInfo = {
-      name: user.name,
-      username: user.username,
-      email: user.email,
-      joinDate: user.joinDate,
-    }
-    res.json(userInfo);
   });
 };
 
@@ -143,8 +152,8 @@ const userLogin = (req, res) => {
     // check for user
     if (foundUser) {
       // check password
-      bcrypt
-        .compare(password_digest, foundUser.password_digest)
+      
+      bcrypt.compare(password_digest, foundUser.password_digest)
         .then(isMatch => {
           if (isMatch) {
             // user confirmed, send web token
