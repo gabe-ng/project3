@@ -23,12 +23,6 @@
     margin-top: 1rem;
 }
 
-.post-container {
-    border: 1px solid black;
-    height: 90vh - 3rem;
-    width: 37vw;
-}
-
 .chatbox {
     border: 1px solid black;
     width: 25vw;

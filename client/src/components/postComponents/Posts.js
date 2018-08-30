@@ -4,12 +4,9 @@ import Post from "./Post";
 
 class Posts extends Component {
   render() {
-    return (
-      <div>
-        <h4>Posts</h4>
+    return <div className="posts-list">
         <Post />
-      </div>
-    );
+      </div>;
   }
 }
 

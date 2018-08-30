@@ -1,0 +1,22 @@
+.post-container {
+    border: 1px solid black;
+    height: 90vh - 3rem;
+    width: 37vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.posts-list {
+    margin: auto;
+    border: 1px solid black;
+    width: 90%;
+    height: 76vh;
+    overflow-y: auto;
+}
+
+.post {
+    border: 1px solid black;
+    margin: 1em auto;
+    width: 95%;
+}

@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getAllUsers, getUserProfile } from "../redux/actions/userActions";
 
+
+import "../styles/allUsers.css";
 class AllUsers extends Component {
     
     componentDidMount = () => {

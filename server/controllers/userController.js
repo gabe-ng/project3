@@ -46,7 +46,13 @@ const getUser = (req, res) => {
       console.log(err);
       return;
     }
-    res.json(user);
+    let userInfo = {
+      name: user.name,
+      username: user.username,
+      email: user.email,
+      joinDate: user.joinDate,
+    }
+    res.json(userInfo);
   });
 };
 

@@ -5,7 +5,7 @@ import PostForm from "./PostForm";
 class Post extends Component {
   render() {
     return (
-      <div>
+      <div className="post">
         <h5>I am a post!</h5>
         <PostForm />
       </div>
