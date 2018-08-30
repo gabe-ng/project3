@@ -51,6 +51,7 @@ const getUser = (req, res) => {
           return;
         }
         let userInfo = {
+          id: user._id,
           name: user.name,
           username: user.username,
           email: user.email,
@@ -92,6 +93,7 @@ const createUser = (req, res) => {
         } else {
           // create new user
           let newUser = new db.User({
+            id: user._id,
             name: req.body.name,
             username: req.body.username,
             email: req.body.email,

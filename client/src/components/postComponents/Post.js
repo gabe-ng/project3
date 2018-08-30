@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 
-import PostForm from "./PostForm";
+import EditPostForm from "./EditPostForm";
 
 class Post extends Component {
   render() {
     return (
       <div className="post">
         <h5>I am a post!</h5>
-        <PostForm />
+        <EditPostForm />
       </div>
     );
   }

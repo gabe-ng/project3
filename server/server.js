@@ -27,12 +27,11 @@ const verifyToken = (req, res, next) => {
     // CHeck if bearder is undefined
     if (typeof bearerHeader !== "undefined") {
         // Split at the space
-        // const bearer = bearerHeader.split(" ");
-        // // Get token from array
-        // const bearerToken = bearer[1];
-        // // Set the token
-        // req.token = bearerToken;
-        req.token = bearerHeader;
+        const bearer = bearerHeader.split(" ");
+        // Get token from array
+        const bearerToken = bearer[1];
+        // Set the token
+        req.token = bearerToken;
         // Next middleware
         next();
     } else {

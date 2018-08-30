@@ -56,7 +56,7 @@ class ProfileContainer extends Component {
         <Stats user={this.props.state.profileInfo} />
         <PostContainer
           style={this.state.postContainerMargin}
-          user={this.props.state}
+          user={this.props.state.profileInfo}
         />
       </div>
     );

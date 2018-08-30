@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 
 class Bio extends Component {
-  render() {
+  render() {    
     let profile;
     if (this.props.user) {
       profile = (
         <div>
           <h2>
-            {this.props.user.username}
+            {this.props.user.user.username}
             's Bio
           </h2>
-          <p>Full Name: {this.props.user.name}</p>
-          <p>Email: {this.props.user.email}</p>
-          <p>Join Date: {this.props.user.joinDate}</p>
+          <p>Full Name: {this.props.user.user.name}</p>
+          <p>Email: {this.props.user.user.email}</p>
+          <p>Join Date: {this.props.user.user.joinDate}</p>
         </div>
       );
     } else {
