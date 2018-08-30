@@ -26,9 +26,6 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.props.state);
-    console.log('APP PROP State', this.props.state);
-    
     return <div>
         <Navbar />
         <Switch>
@@ -41,9 +38,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  console.log("mapping state");
-  
+const mapStateToProps = state => {  
   return {
     state: state.authReducer,
   };

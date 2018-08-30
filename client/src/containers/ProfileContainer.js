@@ -18,26 +18,48 @@ class ProfileContainer extends Component {
   };
 
   componentDidMount = () => {
-    let id = this.props.match.params.user_id
-    this.props.getUserProfile(id)
+    console.log("in profile did mount");
+
+    let id = this.props.match.params.user_id;
+    this.props
+      .getUserProfile(id)
       .then(response => {
         console.log("fetched user info");
       })
       .catch(err => {
         console.log(err);
-      })
-  }
-  
+      });
+  };
+
+  componentWillUpdate = (nextProps, nextState) => {
+    if (nextProps.match.params.user_id !== this.props.match.params.user_id) {
+      console.log("diff props");
+      console.log("AAAAYYYOOOOOOOOO", nextProps);
+      let id = nextProps.match.params.user_id;
+      this.props
+        .getUserProfile(id)
+        .then(response => {
+          console.log("fetched user info");
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  };
 
   render() {
-    console.log(this.props);
-    console.log(this.props.state);
+    console.log(this.props.state.profileInfo);
     
-    return <div className="profile-container">
-        <Bio user={this.props.state} />
-        <Stats user={this.props.state} />
-        <PostContainer style={this.state.postContainerMargin} />
-      </div>;
+    return (
+      <div className="profile-container">
+        <Bio user={this.props.state.profileInfo} />
+        <Stats user={this.props.state.profileInfo} />
+        <PostContainer
+          style={this.state.postContainerMargin}
+          user={this.props.state}
+        />
+      </div>
+    );
   }
 }
 
@@ -49,6 +71,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({ getUserProfile }, dispatch);
-}
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProfileContainer);
