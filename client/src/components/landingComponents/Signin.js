@@ -26,8 +26,10 @@ class SignIn extends Component {
         }
 
         this.props.logIn(userData)
-            .then(() => {
-                this.props.history.push("/homepage");
+            .then(response => {
+                console.log(response);
+                if (response.type !== "LOG_IN_ERROR")
+                    this.props.history.push("/homepage");
             })
             .catch((error)=> {
                 console.log(error);

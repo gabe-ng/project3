@@ -86,7 +86,7 @@ export const logIn = userData => {
           console.log("login action res", res);
           localStorage.setItem("fbct", res.data.token);
           const decoded = jwt_decode(res.data.token);
-          dispatch(logInSuccess(decoded));
+          return dispatch(logInSuccess(decoded));
         })
         .catch(() => dispatch(logInError()));
   };

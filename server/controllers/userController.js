@@ -8,6 +8,8 @@ let db = require("../models");
 // GET /api/users
 
 const getUsers = (req, res) => {
+  console.log(req.token);
+  
   jwt.verify(req.token, "secretKey", (err, authData) => {
     if (err) {
       res.sendStatus(403);

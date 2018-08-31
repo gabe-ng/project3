@@ -11,19 +11,15 @@ class Post extends Component {
     //       <p>By {comment.user.name} on {comment.dateCreated}</p>
     //     </li>;
     // })
-    console.log(this.props);
-    if (this.props.post.user)
-      console.log(this.props.post.user._id);
-    
     let options;
     // Wait for user attribute to load
-    if (this.props.post.user) {
+    if (this.props.post.user && this.props.currentUser) {
       // A user can see the edit and delete options only if they are the post creators
       if (this.props.post.user._id === this.props.currentUser.user.id) {
         options = <span>
-            <span className="post-option" onClick={this.props.toggleEdit} data-id={this.props.post._id}>
+            <span className="post-option">
               Edit
-            </span> | <span className="post-option" onClick={this.props.deletePost} data-id={this.props.post._id}>
+            </span> | <span className="post-option">
               Delete
             </span>
           </span>;
