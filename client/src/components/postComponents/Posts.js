@@ -18,26 +18,23 @@ class Posts extends Component {
   }
 
   componentWillUpdate = (nextProps, nextState) => {
-    if (this.props.state.message !== nextProps.state.message) {
-      this.props.getPosts()
+    if (this.props.postState.message !== nextProps.postState.message) {
+      this.props
+        .getPosts()
         .then(res => {
           console.log("fetched posts");
         })
         .catch(err => {
           console.log(err);
-        })
+        });
     }
   }
   
   render() {
 
-    let posts = this.props.state.posts.map(post => {
-      return <Post
-        currentUser={this.props.currentUser}
-        key={post._id}
-        id={post._id}
-        post={post} />
-    })
+    let posts = this.props.postState.posts.map(post => {
+      return <Post currentUser={this.props.currentUser} key={post._id} id={post._id} post={post} />;
+    });
     
     return <div className="posts-list">
         {posts}
@@ -47,7 +44,7 @@ class Posts extends Component {
 
 const mapStateToProps = state => {
   return {
-    state: state.postReducer,
+    postState: state.postReducer,
   };
 }; 
 

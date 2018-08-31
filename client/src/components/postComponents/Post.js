@@ -3,18 +3,25 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { deletePost } from "../../redux/actions/postActions";
+import { getComments } from "../../redux/actions/commentActions";
 
 // import EditPostForm from "./EditPostForm";
 
 class Post extends Component {
+
+  componentDidMount = () => {
+    this.props.getComments(this.props.post._id)
+      .then(res => {
+        console.log(res);
+        
+        console.log("fetched post comments");
+      })
+      .catch(err => {
+        console.log(err); 
+      })
+  }
+  
   render() {
-    // let comments = this.props.post.comments.map(comment => {
-    //   return <li>
-    //       <h4>{comment.title}</h4>
-    //       <p>{comment.body}</p>
-    //       <p>By {comment.user.name} on {comment.dateCreated}</p>
-    //     </li>;
-    // })
     let options;
     // Wait for user attribute to load
     if (this.props.post.user && this.props.currentUser) {
@@ -31,13 +38,28 @@ class Post extends Component {
       options = <span>Posted by {this.props.post.user.username}</span>;
       }
     }
+    
+    let comments;
+    if (this.props.commentState.comments && this.props.commentState.comments.length !== 0) {
+        comments = this.props.commentState.map(comment => {
+        return (
+          <div className="comment" key={comment._id}>
+            <p>{comment.title}</p>
+            <p>{comment.body}</p>
+            <p>Posted By: {comment.user.username} on {comment.dateCreated}</p>
+          </div>
+        )
+      })
+    } else {
+      comments = <div>No comments yet.</div>
+    }
 
     return (
       <div className="post">
         <h3>{this.props.post.title}</h3>
         <p>{this.props.post.body}</p>
         <ul className="comment-list">
-      
+        {comments}
         </ul>
         {options}
       </div>
@@ -45,9 +67,15 @@ class Post extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    commentState: state.commentReducer
+  };
+}; 
+
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ deletePost }, dispatch);
+  return bindActionCreators({ deletePost, getComments }, dispatch);
 };
 
-export default connect(null, mapDispatchToProps)(Post);
+export default connect(mapStateToProps, mapDispatchToProps)(Post);
 

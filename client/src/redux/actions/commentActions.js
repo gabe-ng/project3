@@ -20,8 +20,7 @@ export const getCommentsSuccess = (comments) => {
 }
 
 export const getComments = (postId) => {
-    return dispatch => {
-        
+    return dispatch => {        
         dispatch(gettingComments());
 
         return axios.get("http://localhost:3001/api/comments/" + postId)

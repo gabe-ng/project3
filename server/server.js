@@ -44,10 +44,9 @@ const verifyToken = (req, res, next) => {
 
 // Users
 app.get("/api/users", verifyToken, controllers.user.index);
-app.get("/api/users/show/:id", verifyToken, controllers.user.show);
+app.get("/api/users/:id", verifyToken, controllers.user.show);
 app.post("/api/users/create", controllers.user.create);
 app.post("/api/users/login", controllers.user.login);
-
 app.put("/api/users/update/:id", verifyToken, controllers.user.update);
 
 // Friends
@@ -60,7 +59,9 @@ app.delete("/api/posts/:id", controllers.post.delete);
 
 // Comments
 app.get("/api/comments/:post_id/", controllers.comment.getComments);
-app.post("/api/:post_id/comment/new", controllers.comment.create);
+app.post("/api/comments/create/:user_id/:post_id", controllers.comment.create);
+app.delete("/api/comments/:id", controllers.comments.delete)
+app.delete("/api/comments/post/:post_id", controllers.comments.deleteMany);
 
 // Server
 let port = process.env.PORT || 3001;
