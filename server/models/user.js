@@ -5,6 +5,10 @@ let UserSchema = new Schema({
     name: String,
     username: String,
     email: String,
+    aboutMe: {
+        type: String,
+        default: "Write something here!"
+    },
     password_digest: String,
     joinDate: {
         type: Date,

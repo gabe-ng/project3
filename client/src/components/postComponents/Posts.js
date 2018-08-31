@@ -18,7 +18,6 @@ class Posts extends Component {
   }
 
   render() {
-    console.log(this.props.state);
 
     let posts = this.props.state.posts.map(post => {
       return <Post

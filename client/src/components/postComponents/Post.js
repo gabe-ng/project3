@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
+import { deletePost } from "../../redux/actions/postActions";
 
 // import EditPostForm from "./EditPostForm";
 
@@ -19,7 +23,7 @@ class Post extends Component {
         options = <span>
             <span className="post-option">
               Edit
-            </span> | <span className="post-option">
+            </span> | <span className="post-option" onClick={() => this.props.deletePost(this.props.post._id)}>
               Delete
             </span>
           </span>;
@@ -41,4 +45,9 @@ class Post extends Component {
   }
 }
 
-export default Post;
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ deletePost }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(Post);
+

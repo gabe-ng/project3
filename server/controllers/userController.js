@@ -186,15 +186,13 @@ const userLogin = (req, res) => {
 
 // PUT /api/users/udpate/:id
 
-const updateUser = (req, res) => {
-  console.log(req.token);
-  
+const updateUser = (req, res) => { 
   jwt.verify(req.token, "secretKey", (err, authData) => {
     if (err) {
       res.sendStatus(403);
     } else {
       let id = req.params.id;
-      let update = req.body;
+      let update = req.body;      
       db.User.findByIdAndUpdate(
         id,
         update,
@@ -204,6 +202,8 @@ const updateUser = (req, res) => {
             console.log(err);
             return;
           }
+          console.log(user);
+          
           res.status(200).send("User successfully updated");
         }
       );

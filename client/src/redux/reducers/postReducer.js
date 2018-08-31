@@ -4,21 +4,26 @@ let defaultPostState = {
 
 const postReducer = (state = defaultPostState, action) => {
     switch (action.type) {
-        case "CREATING_POST":
-            console.log("attempting to create post");
-            return { ...state };
-        case "CREATE_POST_ERROR":
-            console.log("failed to create post");
-            return { ...state };
-        case "CREATE_POST_SUCCESS":
-            console.log("create post successful");
-            return { ...state };
-        case "GET_POSTS":
-            let newPostState = { ...state };
-            newPostState.posts = action.posts;
-            return newPostState;
-        default:
-            return state;
+      case "GET_POSTS":
+        let newPostState = { ...state };
+        newPostState.posts = action.posts;
+        return newPostState;
+      case "CREATING_POST":
+        console.log("attempting to create post");
+        return { ...state };
+      case "CREATE_POST_ERROR":
+        console.log("failed to create post");
+        return { ...state };
+      case "CREATE_POST_SUCCESS":
+        console.log("create post successful");
+        return { ...state };
+      case "DELETE_POST_SUCCESS":
+        console.log("delete post successful");
+        let newDeletedState = { ...state };
+        newDeletedState.message = "Deleted Post!"
+        return newDeletedState;
+      default:
+        return state;
     }
 };
 

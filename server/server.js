@@ -49,15 +49,15 @@ app.get("/api/users/show/:id", verifyToken, controllers.user.getOne);
 app.post("/api/users/create", controllers.user.create);
 app.post("/api/users/login", controllers.user.login);
 
-app.put("/api/users/update/:username", verifyToken, controllers.user.update);
+app.put("/api/users/update/:id", verifyToken, controllers.user.update);
 
 // Friends
 app.get("/api/friends", controllers.friends.show);
 
 // Posts
 app.get("/api/posts", controllers.post.show);
-
 app.post("/api/posts/new/:user_id", controllers.post.create);
+app.delete("/api/posts/:id", controllers.post.delete);
 
 // Comments
 app.post("/api/:post_id/comment/new", controllers.comment.create);

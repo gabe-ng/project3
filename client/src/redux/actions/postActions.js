@@ -47,3 +47,19 @@ export const getPosts = () => {
             .catch(err => console.log(err))
     }
 }
+
+export const deletePostSuccess = () => {
+    return {
+        type: "DELETE_POST_SUCCESS",
+    }
+}
+
+export const deletePost = (postId) => {
+    return dispatch => {
+        return axios.delete("http://localhost:3001/api/posts/" + postId)
+            .then(res => {
+                return dispatch(deletePostSuccess())
+            })
+            .catch(err => console.log(err));
+    }
+}

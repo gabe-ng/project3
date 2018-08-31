@@ -3,44 +3,65 @@ const db = require("../models");
 // GET /api/posts
 
 const getPosts = (req, res) => {
-    db.Post.find({})
-        .populate("user")
-        .exec((err, posts) => {
-        if (err) {
-            console.log(err);
-            return;
-        }
-        res.json(posts);
-    })
-}
+  db.Post.find({})
+    .populate("user")
+    .exec((err, posts) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      res.json(posts);
+    });
+};
 
 // POST /api/posts/new/:user_id
 
 const createPost = (req, res) => {
-    let newPost = req.body;
-    let userId = req.params.user_id;
-    db.Post.create(newPost, (err, createdPost) => {
+  let newPost = req.body;
+  let userId = req.params.user_id;
+  db.Post.create(newPost, (err, createdPost) => {
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      console.log("Newly created post: ", createdPost);
+      db.User.findById(userId, (err, foundUser) => {
         if (err) {
-            console.log(err);
-            return;
+          console.log(err);
+          return;
         } else {
-            console.log("Newly created post: ", createdPost);
-            db.User.findById(userId, (err, foundUser) => {
-                if (err) {
-                    console.log(err);
-                    return
-                } else {
-                    console.log("Setting new post user");
-                    createdPost.user = foundUser;
-                    createdPost.save();
-                    res.status(200).send(createdPost, "successfully created with user ", foundUser);
-                }
-            })
+          console.log("Setting new post user");
+          createdPost.user = foundUser;
+          createdPost.save();
+          res
+            .status(200)
+            .send(createdPost, "successfully created with user ", foundUser);
         }
-    })
-}
+      });
+    }
+  });
+};
+
+// DELETE /api/posts/:id
+
+const deletePost = (req, res) => {
+  let id = req.params.id;
+  db.Post.findByIdAndRemove(id, (err, deletedPost) => {
+    if (err) {
+      console.log(err);
+      return;
+    } else {
+      console.log("Deleting ", deletedPost);
+      res.json({
+        message: "successfully deleted",
+        deletedPost
+      });
+    }
+  });
+};
 
 module.exports = {
-    show: getPosts,
-    create: createPost,
-}
+  show: getPosts,
+  create: createPost,
+  delete: deletePost
+};
