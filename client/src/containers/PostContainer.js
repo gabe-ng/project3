@@ -30,7 +30,7 @@ class PostContainer extends Component {
           </button> : <button onClick={this.toggleAddPost}>
             Create post
           </button>}
-        {this.state.addingPost ? <CreatePostFrom currentUser={this.props.currentUser} close={this.cancelAddPost}/> : <Posts />}
+      {this.state.addingPost ? <CreatePostFrom currentUser={this.props.currentUser} close={this.cancelAddPost} /> : <Posts currentUser={this.props.currentUser}/>}
       </div>;
   }
 }

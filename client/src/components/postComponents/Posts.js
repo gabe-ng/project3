@@ -21,7 +21,8 @@ class Posts extends Component {
     console.log(this.props.state);
 
     let posts = this.props.state.posts.map(post => {
-      return <Post 
+      return <Post
+        currentUser={this.props.currentUser}
         key={post._id}
         id={post._id}
         post={post} />

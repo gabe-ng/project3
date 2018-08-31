@@ -93,7 +93,6 @@ const createUser = (req, res) => {
         } else {
           // create new user
           let newUser = new db.User({
-            id: user._id,
             name: req.body.name,
             username: req.body.username,
             email: req.body.email,
