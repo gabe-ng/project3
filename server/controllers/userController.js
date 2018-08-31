@@ -212,8 +212,8 @@ const updateUser = (req, res) => {
 };
 
 module.exports = {
-  getAll: getUsers,
-  getOne: getUser,
+  index: getUsers,
+  show: getUser,
   create: createUser,
   login: userLogin,
   update: updateUser

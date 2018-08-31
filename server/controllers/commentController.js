@@ -1,9 +1,9 @@
 const db = require("../models");
 
-// GET /api/:post_id/comments
+// GET /api/comments/:post_id
 const getPostComments = (req, res) => {
     let postId = req.params.post_id;
-    db.Comment.find( {post: postId}, (err, comments) => {
+    db.Comment.find({ post: { _id: postId} }, (err, comments) => {
         if (err) {
             console.log(err);
             return;

@@ -13,16 +13,6 @@ let postList = [
     {
         title: "First Post",
         body: "this is my first test post",
-        comments: [
-            {
-                title: "i am the first first comment.",
-                body: "i am better than any other comment",
-            },
-            {
-                title: "i am the  real first first comment.",
-                body: "i am better than any post",
-            }
-        ]
     }
 ]
 
