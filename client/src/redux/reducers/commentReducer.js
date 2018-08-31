@@ -12,6 +12,14 @@ const commentReducer = (state = defaultCommentState, action) => {
             let newCommentState = { ...state};
             newCommentState.comments = action.comments;
             return newCommentState;
+        case "DELETING_COMMENT":
+            return { ...state };
+        case "DELETE_COMMENT_ERROR":
+            return { ...state };
+        case "DELETE_COMMENT_SUCESS":
+            return { ...state };
+        case "DELETE_POST_COMMENTS_SUCCESS":
+            return { ...state };
         default:
             return state;
     }
