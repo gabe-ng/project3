@@ -1,5 +1,17 @@
 const db = require("../models");
 
+// GET /api/:post_id/comments
+const getPostComments = (req, res) => {
+    let postId = req.params.post_id;
+    db.Comment.find( {post: postId}, (err, comments) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        res.json(comments);
+    })
+}
+
 // POST /api/:post_id/comment/new
 
 const createComment = (req, res) => {
@@ -32,5 +44,6 @@ const createComment = (req, res) => {
 };
 
 module.exports = {
-  create: createComment
+    getComments: getPostComments,
+    create: createComment
 };

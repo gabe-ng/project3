@@ -17,6 +17,18 @@ class Posts extends Component {
       })
   }
 
+  componentWillUpdate = (nextProps, nextState) => {
+    if (this.props.state.message !== nextProps.state.message) {
+      this.props.getPosts()
+        .then(res => {
+          console.log("fetched posts");
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }
+  }
+  
   render() {
 
     let posts = this.props.state.posts.map(post => {
