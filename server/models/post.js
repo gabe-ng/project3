@@ -14,7 +14,6 @@ let PostSchema = new Schema({
         type: Date,
         default: Date.now,
     },
-    comments: [Comment.schema]
 
 })
 

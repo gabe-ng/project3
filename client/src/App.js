@@ -31,7 +31,7 @@ class App extends Component {
         <Switch>
           <Route path="/homepage" exact render={props => <HomepageContainer {...props} currentUser={this.props.state.currentUser}/>} />
           <Route path="/allusers" exact render={props => <AllUsers {...props} />} />
-          <Route path="/profile/:user_id" render={props => <ProfileContainer {...props} />} />
+          <Route path="/profile/:user_id" render={props => <ProfileContainer {...props} currentUser={this.props.state.currentUser}/>} />
           <Route path="/" render={props => <Landing {...props} />} />
         </Switch>
       </div>;

@@ -8,8 +8,6 @@ let db = require("../models");
 // GET /api/users
 
 const getUsers = (req, res) => {
-  console.log(req.token);
-  
   jwt.verify(req.token, "secretKey", (err, authData) => {
     if (err) {
       res.sendStatus(403);
@@ -78,7 +76,7 @@ const createUser = (req, res) => {
     }
     // if username is found, return bad request
     if (foundUserName) {
-      console.log("userName error")
+      console.log("userName error");
       res.status(400).json({ error: "Username already exists" });
     } else {
       db.User.findOne({ email: req.body.email }, (err, foundUserEmail) => {
@@ -90,7 +88,7 @@ const createUser = (req, res) => {
         if (foundUserEmail) {
           console.log("userEmailerror");
           console.log(foundUserEmail);
-          
+
           res.status(400).json({ error: "Email already in use" });
         } else {
           // create new user
@@ -123,7 +121,7 @@ const createUser = (req, res) => {
             name: newUser.name,
             username: newUser.username,
             email: newUser.email,
-            joinDate: newUser.joinDate,
+            joinDate: newUser.joinDate
           };
 
           jwt.sign({ user: user }, "secretKey", (err, token) => {
@@ -155,8 +153,9 @@ const userLogin = (req, res) => {
     // check for user
     if (foundUser) {
       // check password
-      
-      bcrypt.compare(password_digest, foundUser.password_digest)
+
+      bcrypt
+        .compare(password_digest, foundUser.password_digest)
         .then(isMatch => {
           if (isMatch) {
             // user confirmed, send web token
@@ -165,7 +164,7 @@ const userLogin = (req, res) => {
               name: foundUser.name,
               username: foundUser.username,
               email: foundUser.email,
-              joinDate: foundUser.joinDate,
+              joinDate: foundUser.joinDate
             };
 
             jwt.sign({ user: user }, "secretKey", (err, token) => {
@@ -185,22 +184,31 @@ const userLogin = (req, res) => {
   });
 };
 
-// PUT /api/users/udpate/:username
+// PUT /api/users/udpate/:id
 
 const updateUser = (req, res) => {
-  let update = req.body;
-  db.User.findOneAndUpdate(
-    { username: req.params.username },
-    update,
-    { new: true },
-    (err, user) => {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      res.status(200).send("User successfully created");
+  console.log(req.token);
+  
+  jwt.verify(req.token, "secretKey", (err, authData) => {
+    if (err) {
+      res.sendStatus(403);
+    } else {
+      let id = req.params.id;
+      let update = req.body;
+      db.User.findByIdAndUpdate(
+        id,
+        update,
+        { new: true },
+        (err, user) => {
+          if (err) {
+            console.log(err);
+            return;
+          }
+          res.status(200).send("User successfully updated");
+        }
+      );
     }
-  );
+  });
 };
 
 module.exports = {
