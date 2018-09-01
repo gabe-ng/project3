@@ -31,6 +31,38 @@ export const getComments = (postId) => {
     }
 };
 
+export const creatingComment = () => {
+    return {
+        type: "CREATING_COMMENT"
+    }
+}
+
+export const createCommentError = () => {
+    return {
+        type: "CREATE_COMMENT_ERROR"
+    }
+}
+
+export const createCommentSuccess = () => {
+    return {
+        type: "CREATE_COMMENT SUCCESS"
+    }
+}
+
+export const createComment = (comment, userId, postId) => {
+    return dispatch => {
+
+        dispatch(creatingComment());
+
+        return axios.post(`http://localhost:3001/api/comments/create/${userId}/${postId}`, comment)
+            .then(res => {
+                console.log(res);
+                dispatch(createCommentSuccess(res.data))
+            })
+            .catch(dispatch(createCommentError()));
+    }
+}
+
 export const deletingComment = () => {
     return {
         type: "DELETING_COMMENT"
@@ -58,7 +90,7 @@ export const deleteComment = (commentId) => {
             .then(res => {
                 return dispatch(deleteCommentSuccess());
             })
-            .catch(err => console.log(err))
+            .catch(dispatch(deleteCommentError()));
     }
 }
 

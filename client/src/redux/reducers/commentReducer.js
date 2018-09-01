@@ -9,9 +9,17 @@ const commentReducer = (state = defaultCommentState, action) => {
         case "GET_COMMENTS_ERROR":
             return {...state};
         case "GET_COMMENTS_SUCCESS":
+            let commentsState = { ...state};
+            commentsState.comments = action.comments;
+            return commentsState;
+        case "CREATING_COMMENT":
             let newCommentState = { ...state};
-            newCommentState.comments = action.comments;
+            newCommentState.comments.push(action.comment) 
             return newCommentState;
+        case "CREATE_COMMMENT_ERROR":
+            return { ...state };
+        case "CREATE_COMMENT_SUCCESS":
+            return {}
         case "DELETING_COMMENT":
             return { ...state };
         case "DELETE_COMMENT_ERROR":

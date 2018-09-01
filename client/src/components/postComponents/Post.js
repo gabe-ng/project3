@@ -54,16 +54,15 @@ class Post extends Component {
       comments = <div>No comments yet.</div>
     }
 
-    return (
-      <div className="post">
+    return <div className="post">
         <h3>{this.props.post.title}</h3>
         <p>{this.props.post.body}</p>
-        <ul className="comment-list">
-        {comments}
-        </ul>
         {options}
-      </div>
-    );
+        <ul className="comment-list">
+        <input type="text" name="comment" placeholder="Leave a comment" className="comment-box"/>
+        <input type="submit" value="Comment" className="comment-submit" />
+        {comments}</ul>
+      </div>;
   }
 }
 
