@@ -25,7 +25,7 @@ class Post extends Component {
     let postId = e.target.getAttribute("data-id");
     this.props.createComment(comment, userId, postId)
       .then(res => {
-        console.log(res);
+        this.props.getComments();
       })
       .catch(err => {
         console.log(err);
@@ -45,7 +45,6 @@ class Post extends Component {
   }
   
   render() {
-    console.log(this.props.post);
     
     let options;
     // Wait for user attribute to load
@@ -63,10 +62,11 @@ class Post extends Component {
       options = <span>Posted by {this.props.post.user.username}</span>;
       }
     }
-    
+    console.log(this.props);
+    console.log(this.props.commentState.comments);
+
     let comments;
     if (this.props.commentState.comments && this.props.commentState.comments.length !== 0) {
-      console.log("DWQIDQWID", this.props.commentState.comments);
       
         comments = this.props.commentState.comments.map(comment => {
         return (
@@ -87,7 +87,7 @@ class Post extends Component {
         {options}
         <ul className="comment-list">
         <input type="text" name="comment" placeholder="Leave a comment" className="comment-box" onChange={this.handleChange}/>
-        <input type="submit" value="Comment" className="comment-submit" data-id={this.props.post._id} onClick={this.handleSubmit} />
+        <input type="submit" value="Comment" className="comment-submit" data-id={`${this.props.post._id}`} onClick={this.handleSubmit} />
         {comments}</ul>
       </div>;
   }

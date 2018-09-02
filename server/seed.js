@@ -34,3 +34,11 @@ db.Post.deleteMany({}, (err, posts) => {
         process.exit();
     });
 });
+
+// db.Comment.deleteMany({}, (err, comments) => {
+//     if (err) {
+//         console.log("Error", err);
+//         return;
+//     }
+//     process.exit();
+// });

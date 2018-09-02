@@ -43,9 +43,10 @@ export const createCommentError = () => {
     }
 }
 
-export const createCommentSuccess = () => {
+export const createCommentSuccess = (comment) => {
     return {
-        type: "CREATE_COMMENT SUCCESS"
+        type: "CREATE_COMMENT SUCCESS",
+        comment,
     }
 }
 
