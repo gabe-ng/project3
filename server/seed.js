@@ -31,14 +31,14 @@ db.Post.deleteMany({}, (err, posts) => {
         }
         console.log("All posts: ", posts);
         console.log("Created ", posts.length, "posts");
-        process.exit();
+        // process.exit();
     });
 });
 
-// db.Comment.deleteMany({}, (err, comments) => {
-//     if (err) {
-//         console.log("Error", err);
-//         return;
-//     }
-//     process.exit();
-// });
+db.Comment.deleteMany({}, (err, comments) => {
+    if (err) {
+        console.log("Error", err);
+        return;
+    }
+    process.exit();
+});

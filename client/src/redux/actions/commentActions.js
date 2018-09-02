@@ -19,11 +19,23 @@ export const getCommentsSuccess = (comments) => {
     }
 }
 
-export const getComments = (postId) => {
+// export const getComments = (postId) => {
+//     return dispatch => {        
+//         dispatch(gettingComments());
+
+//         return axios.get("http://localhost:3001/api/comments/" + postId)
+//             .then(res => {
+//                 return dispatch(getCommentsSuccess(res.data));
+//             })
+//             .catch(err => console.log(err))
+//     }
+// };
+
+export const getComments = () => {
     return dispatch => {        
         dispatch(gettingComments());
 
-        return axios.get("http://localhost:3001/api/comments/" + postId)
+        return axios.get("http://localhost:3001/api/comments/")
             .then(res => {
                 return dispatch(getCommentsSuccess(res.data));
             })

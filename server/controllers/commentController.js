@@ -2,7 +2,10 @@ const db = require("../models");
 
 // GET /api/comments
 const commentsIndex = (req, res) => {
-    db.Comment.find({}, (err, foundComments) => {
+    db.Comment.find({})
+        .populate("user")
+        .populate("post")
+        .exec((err, foundComments) => {
         if (err) {
             console.log(err);
             return;
