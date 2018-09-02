@@ -58,6 +58,7 @@ app.post("/api/posts/new/:user_id", controllers.post.create);
 app.delete("/api/posts/:id", controllers.post.delete);
 
 // Comments
+app.get("/api/comments", controllers.comment.index);
 app.get("/api/comments/:post_id/", controllers.comment.getComments);
 app.post("/api/comments/create/:user_id/:post_id", controllers.comment.create);
 app.delete("/api/comments/:id", controllers.comment.delete)

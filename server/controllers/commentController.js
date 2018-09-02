@@ -1,5 +1,16 @@
 const db = require("../models");
 
+// GET /api/comments
+const commentsIndex = (req, res) => {
+    db.Comment.find({}, (err, foundComments) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        res.json(foundComments);
+    })
+}
+
 // GET /api/comments/:post_id
 const getPostComments = (req, res) => {
   let postId = req.params.post_id;
@@ -34,14 +45,13 @@ const createComment = (req, res) => {
         } else {
           console.log("Setting new comment user");
           createdComment.user = foundUser;
-          createdComment.save();
           db.Post.findById(postId, (err, foundPost) => {
             if (err) {
               console.log(err);
               return;
             } else {
               console.log("Setting new comment post");
-              creataedComment.post = foundPost;
+              createdComment.post = foundPost;
               createdComment.save();
               res.json(createdComment);
             }
@@ -87,6 +97,7 @@ const deletePostComments = (req, res) => {
 };
 
 module.exports = {
+    index: commentsIndex,
   getComments: getPostComments,
   create: createComment,
   delete: deleteComment,
