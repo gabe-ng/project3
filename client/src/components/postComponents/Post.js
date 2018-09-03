@@ -86,17 +86,17 @@ class Post extends Component {
     
     
     let comments;
-    let commentOptions;
-
    
-    if (this.props.commentState.comments && this.props.commentState.comments.length !== 0) {
+    if (this.props.commentState.comments && this.props.commentState.comments.length !== 0 && this.props.currentUser) {
         comments = this.props.commentState.comments.map(comment => {
           if(this.props.post._id === comment.post._id) {
             return <div className="comment" key={comment._id}>
                 <p>{comment.title}</p>
               <p>{comment.body}</p>
-              {
-                comment.user._id === this.props.currentUser.user.id
+              {console.log(comment.user._id)}
+              {console.log(this.props.currentUser.user.id)}
+              
+              {comment.user._id === this.props.currentUser.user.id
                   ? <p>
                     Posted By: {comment.user.username} on {comment.dateCreated}
                     <span className="" onClick={() => this.handleCommentDelete(comment._id)}>
@@ -106,7 +106,6 @@ class Post extends Component {
                   : <p>
                     Posted By: {comment.user.username} on {comment.dateCreated}
                   </p>}
-
             </div>;
           }
       })
