@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { deletePost } from "../../redux/actions/postActions";
-import { getComments, createComment, deletePostComments } from "../../redux/actions/commentActions";
+import { getComments, createComment, deleteComment, deletePostComments } from "../../redux/actions/commentActions";
 
 // import EditPostForm from "./EditPostForm";
 
@@ -41,9 +41,14 @@ class Post extends Component {
     }
   }
 
-  handleDelete = (postId) => {
+  handlePostDelete = (postId) => {
     this.props.deletePost(postId)
       .then(() => this.props.deletePostComments(postId));
+  }
+
+  handleCommentDelete = (commentId) => {
+    this.props.deleteComment(commentId)
+      .then(() => this.props.getComments());
   }
 
   componentDidMount = () => {
@@ -68,7 +73,7 @@ class Post extends Component {
         options = <span>
             <span className="post-option">
               Edit
-            </span> | <span className="post-option" onClick={() => this.handleDelete(this.props.post._id)}>
+            </span> | <span className="post-option" onClick={() => this.handlePostDelete(this.props.post._id)}>
               Delete
             </span>
           </span>;
@@ -81,17 +86,28 @@ class Post extends Component {
     
     
     let comments;
+    let commentOptions;
+
+   
     if (this.props.commentState.comments && this.props.commentState.comments.length !== 0) {
-      
         comments = this.props.commentState.comments.map(comment => {
           if(this.props.post._id === comment.post._id) {
-            return (
-              <div className="comment" key={comment._id}>
+            return <div className="comment" key={comment._id}>
                 <p>{comment.title}</p>
-                <p>{comment.body}</p>
-                <p>Posted By: {comment.user.username} on {comment.dateCreated}</p>
-              </div>
-            )
+              <p>{comment.body}</p>
+              {
+                comment.user._id === this.props.currentUser.user.id
+                  ? <p>
+                    Posted By: {comment.user.username} on {comment.dateCreated}
+                    <span className="" onClick={() => this.handleCommentDelete(comment._id)}>
+                      Delete
+                </span>
+                  </p>
+                  : <p>
+                    Posted By: {comment.user.username} on {comment.dateCreated}
+                  </p>}
+
+            </div>;
           }
       })
 
@@ -121,7 +137,7 @@ const mapStateToProps = state => {
 }; 
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ deletePost, getComments, createComment, deletePostComments }, dispatch);
+  return bindActionCreators({ deletePost, getComments, createComment, deleteComment, deletePostComments }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

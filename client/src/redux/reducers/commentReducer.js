@@ -9,30 +9,27 @@ const commentReducer = (state = defaultCommentState, action) => {
       case "GET_COMMENTS_ERROR":
         return { ...state };
       case "GET_COMMENTS_SUCCESS":
-        console.log(action.comments);
         let commentsState = { ...state };
-        commentsState.comments = action.comments;
-        console.log(commentsState.comments);
-        console.log(commentsState);
+        commentsState.comments = action.comments.map(comment => {
+            if (comment.user !== undefined && comment.post !== undefined)
+                return comment;
+            });
         return commentsState;
       case "CREATING_COMMENT":
         return { ...state }
       case "CREATE_COMMMENT_ERROR":
         return { ...state };
       case "CREATE_COMMENT_SUCCESS":
-        console.log(action);
         let newCommentState = { ...state };
-            console.log(newCommentState);
         for (let comment of action.comments) {
         newCommentState.comments.push(comment);
         }
-        console.log(newCommentState);
         return newCommentState;
       case "DELETING_COMMENT":
         return { ...state };
       case "DELETE_COMMENT_ERROR":
         return { ...state };
-      case "DELETE_COMMENT_SUCESS":
+      case "DELETE_COMMENT_SUCCESS":
         return { ...state };
       case "DELETE_POST_COMMENTS_SUCCESS":
         return { ...state };

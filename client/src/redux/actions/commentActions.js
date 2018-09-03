@@ -88,9 +88,10 @@ export const deleteCommentError = () => {
     }
 }
 
-export const deleteCommentSuccess = () => {
+export const deleteCommentSuccess = (deletedComment) => {
     return {
-        type: "DELETE_COMMENT_SUCCESS"
+        type: "DELETE_COMMENT_SUCCESS",
+        deletedComment
     }
 }
 
@@ -101,7 +102,7 @@ export const deleteComment = (commentId) => {
 
         return axios.delete("http://localhost:3001/api/comments/" + commentId)
             .then(res => {
-                return dispatch(deleteCommentSuccess());
+                return dispatch(deleteCommentSuccess(res.data));
             })
             .catch(dispatch(deleteCommentError()));
     }
