@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { deletePost } from "../../redux/actions/postActions";
-import { getComments, createComment } from "../../redux/actions/commentActions";
+import { getComments, createComment, deletePostComments } from "../../redux/actions/commentActions";
 
 // import EditPostForm from "./EditPostForm";
 
@@ -41,6 +41,11 @@ class Post extends Component {
     }
   }
 
+  handleDelete = (postId) => {
+    this.props.deletePost(postId)
+      .then(() => this.props.deletePostComments(postId));
+  }
+
   componentDidMount = () => {
     this.props.getComments()
       .then(res => {
@@ -63,7 +68,7 @@ class Post extends Component {
         options = <span>
             <span className="post-option">
               Edit
-            </span> | <span className="post-option" onClick={() => this.props.deletePost(this.props.post._id)}>
+            </span> | <span className="post-option" onClick={() => this.handleDelete(this.props.post._id)}>
               Delete
             </span>
           </span>;
@@ -116,7 +121,7 @@ const mapStateToProps = state => {
 }; 
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ deletePost, getComments, createComment }, dispatch);
+  return bindActionCreators({ deletePost, getComments, createComment, deletePostComments }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);
