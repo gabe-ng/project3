@@ -79,14 +79,17 @@ class Post extends Component {
     if (this.props.commentState.comments && this.props.commentState.comments.length !== 0) {
       
         comments = this.props.commentState.comments.map(comment => {
-        return (
-          <div className="comment" key={comment._id}>
-            <p>{comment.title}</p>
-            <p>{comment.body}</p>
-            <p>Posted By: {comment.user.username} on {comment.dateCreated}</p>
-          </div>
-        )
+          if(this.props.post._id === comment.post._id) {
+            return (
+              <div className="comment" key={comment._id}>
+                <p>{comment.title}</p>
+                <p>{comment.body}</p>
+                <p>Posted By: {comment.user.username} on {comment.dateCreated}</p>
+              </div>
+            )
+          }
       })
+
     } else {
       comments = <div>No comments yet.</div>
     }

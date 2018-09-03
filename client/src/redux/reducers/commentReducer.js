@@ -23,12 +23,10 @@ const commentReducer = (state = defaultCommentState, action) => {
         console.log(action);
         let newCommentState = { ...state };
             console.log(newCommentState);
-
         for (let comment of action.comments) {
         newCommentState.comments.push(comment);
         }
         console.log(newCommentState);
-        
         return newCommentState;
       case "DELETING_COMMENT":
         return { ...state };

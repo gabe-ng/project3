@@ -3,28 +3,30 @@ const db = require("../models");
 // GET /api/comments
 const commentsIndex = (req, res) => {
     db.Comment.find({})
-        .populate("user")
-        .populate("post")
-        .exec((err, foundComments) => {
+      .populate("user")
+      .populate("post")
+      .sort({ dateCreated: -1 })
+      .exec((err, foundComments) => {
         if (err) {
-            console.log(err);
-            return;
+          console.log(err);
+          return;
         }
         res.json(foundComments);
-    })
+      });
 }
 
 // GET /api/comments/:post_id
 const getPostComments = (req, res) => {
   let postId = req.params.post_id;
   db.Comment.find({ post: { _id: postId } })
+    .sort({ dateCreated: -1 })
     .populate("user")
     .exec((err, comments) => {
-      if (err) {
+    if (err) {
         console.log(err);
         return;
-      }
-      res.json(comments);
+    }
+    res.json(comments);
     });
 };
 
