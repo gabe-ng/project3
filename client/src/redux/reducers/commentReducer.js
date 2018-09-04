@@ -10,17 +10,7 @@ const commentReducer = (state = defaultCommentState, action) => {
         return { ...state };
       case "GET_COMMENTS_SUCCESS":
         let commentsState = { ...state };
-        console.log("BEFOREQDWJDQJDWQJ", commentsState);
-        console.log(action.comments);
-        
-         let filtered = action.comments.map(comment => {
-            console.log(comment);
-            if (comment)
-                return comment;
-            });
-          commentsState.comments = filtered;
-          console.log("AFTQWEWQDWQDQWDWQD", commentsState);
-          
+        commentsState.comments = action.comments;
         return commentsState;
       case "CREATING_COMMENT":
         return { ...state }
@@ -28,8 +18,6 @@ const commentReducer = (state = defaultCommentState, action) => {
         return { ...state };
       case "CREATE_COMMENT_SUCCESS":
         let newCommentState = { ...state };
-        console.log("DUQWDQJDQWDJJD", action.comment);
-        
         newCommentState.comments.push(action.comment);
         return newCommentState;
       case "DELETING_COMMENT":
