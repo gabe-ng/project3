@@ -66,6 +66,13 @@ app.delete("/api/comments/post/:post_id", controllers.comment.deleteMany);
 
 // Server
 let port = process.env.PORT || 3001;
-app.listen(port, () => {
+server = app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
+})
+
+let socket = require('socket.io');
+io = socket(server);
+
+io.on('connection', (socket) => {
+    console.log(socket.id);
 })

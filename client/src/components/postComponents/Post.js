@@ -93,9 +93,6 @@ class Post extends Component {
             return <div className="comment" key={comment._id}>
                 <p>{comment.title}</p>
               <p>{comment.body}</p>
-              {console.log(comment.user._id)}
-              {console.log(this.props.currentUser.user.id)}
-              
               {comment.user._id === this.props.currentUser.user.id
                   ? <p>
                     Posted By: {comment.user.username} on {comment.dateCreated}
