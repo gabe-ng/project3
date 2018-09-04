@@ -1,4 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
+import { updateUser } from "../redux/actions/userActions";
+
 
 class Bio extends Component {
   state = {
@@ -21,6 +26,19 @@ class Bio extends Component {
 
   handleAboutMeUpdate = (e) => {
     e.preventDefault();
+
+    let userId = this.props.currentUser.user.id;
+    let update = {
+      aboutMe: this.state.aboutMe,
+    }
+
+    this.props.updateUser(userId, update)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);  
+      })
   }
 
   render() {
@@ -59,4 +77,9 @@ class Bio extends Component {
   }
 }
 
-export default Bio;
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ updateUser }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(Bio);
+

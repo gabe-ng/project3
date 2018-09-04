@@ -13,6 +13,15 @@ const userReducer = (state = defaultUserState, action) => {
             let newProfileState = { ...state };
             newProfileState.profileInfo = action.userInfo;
             return newProfileState;
+        case "UPDATING_PROFILE":
+            console.log("attempting to update user");
+            return { ...state }
+        case "UPDATE_PROFILE_ERROR":
+            console.log("update user error");
+            return {...state };
+        case "UPDATE_PROFILE_SUCCESS":
+            console.log("updated user successful");
+            return { ...state };
         default:
             return state;
     }

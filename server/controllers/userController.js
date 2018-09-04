@@ -26,6 +26,8 @@ const getUsers = (req, res) => {
   });
 };
 
+// GET /api/users/:id
+
 const getUser = (req, res) => {
   jwt.verify(req.token, "secretKey", (err, authData) => {
     if (err) {
@@ -175,7 +177,7 @@ const userLogin = (req, res) => {
   });
 };
 
-// PUT /api/users/udpate/:id
+// PUT /api/users/:id
 
 const updateUser = (req, res) => { 
   jwt.verify(req.token, "secretKey", (err, authData) => {

@@ -47,7 +47,7 @@ app.get("/api/users", verifyToken, controllers.user.index);
 app.get("/api/users/:id", verifyToken, controllers.user.show);
 app.post("/api/users/create", controllers.user.create);
 app.post("/api/users/login", controllers.user.login);
-app.put("/api/users/update/:id", verifyToken, controllers.user.update);
+app.put("/api/users/:id", verifyToken, controllers.user.update);
 
 // Friends
 app.get("/api/friends", controllers.friends.show);

@@ -40,3 +40,37 @@ export const getUserProfile = (userId) => {
             })
     }
 }
+
+export const updatingUser = () => {
+    return {
+        type: "UPDATING_USER"
+    }
+}
+
+export const updateUserError = () => {
+    return {
+        type: "UPDATE_USER_ERROR"
+    }
+}
+
+export const updateUserSuccess = () => {
+    return {
+        type: "UPDATE_USER_SUCCESS"
+    }
+}
+
+export const updateUser = (userId) => {
+    return dispatch => {
+
+        dispatch(updatingUser());
+
+        return axios.put("http://localhost:3001/api/users/" + userId, update)
+            .then(res => {
+                dispatch(updateUserSuccess())
+            })
+            .catch(err => {
+                dispatch(updateUserError);
+                console.log(err);        
+            })
+    }
+}
