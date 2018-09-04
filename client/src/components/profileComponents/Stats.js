@@ -19,7 +19,7 @@ class Stats extends Component {
       profile = <div>Loading user data</div>
     }
 
-    return <div className="profile-bio">{profile}</div>;
+    return <div className="profile-stats">{profile}</div>;
   }
 };
 

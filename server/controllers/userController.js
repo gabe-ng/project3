@@ -50,11 +50,14 @@ const getUser = (req, res) => {
           console.log(err);
           return;
         }
+        console.log(user);
+  
         let userInfo = {
-          id: user._id,
+          id: user.id,
           name: user.name,
           username: user.username,
           email: user.email,
+          aboutMe: user.aboutMe,
           joinDate: user.joinDate
         };
         res.json({
@@ -121,6 +124,7 @@ const createUser = (req, res) => {
             name: newUser.name,
             username: newUser.username,
             email: newUser.email,
+            aboutMe: newUser.aboutMe,
             joinDate: newUser.joinDate
           };
 
