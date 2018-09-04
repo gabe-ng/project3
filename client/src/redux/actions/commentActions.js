@@ -57,14 +57,14 @@ export const createCommentError = () => {
 
 export const createCommentSuccess = (comment) => {
     return {
-        type: "CREATE_COMMENT SUCCESS",
+        type: "CREATE_COMMENT_SUCCESS",
         comment,
     }
 }
 
 export const createComment = (comment, userId, postId) => {
     return dispatch => {
-
+ 
         dispatch(creatingComment());
 
         return axios.post(`http://localhost:3001/api/comments/create/${userId}/${postId}`, comment)
@@ -74,6 +74,7 @@ export const createComment = (comment, userId, postId) => {
             })
             .catch(dispatch(createCommentError()));
     }
+
 }
 
 export const deletingComment = () => {

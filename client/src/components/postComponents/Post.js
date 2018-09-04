@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { deletePost } from "../../redux/actions/postActions";
+import { getPosts, deletePost } from "../../redux/actions/postActions";
 import { getComments, createComment, deleteComment, deletePostComments } from "../../redux/actions/commentActions";
 
 // import EditPostForm from "./EditPostForm";
@@ -20,15 +20,14 @@ class Post extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    console.log('Submitted', this.state.comment);
     if (this.state.comment !== "") {
       let comment = { body: this.state.comment };
       let userId = this.props.currentUser.user.id;
       let postId = e.target.getAttribute("data-id");
+      console.log(comment, userId, postId);
+      
       this.props.createComment(comment, userId, postId)
-        .then(res => {
-          console.log(res);
-          this.props.getComments();
-        })
         .then(() => {
           this.setState({
             comment: ''
@@ -43,7 +42,8 @@ class Post extends Component {
 
   handlePostDelete = (postId) => {
     this.props.deletePost(postId)
-      .then(() => this.props.deletePostComments(postId));
+      .then(() => this.props.deletePostComments(postId))
+      .then(() => this.props.getPosts());
   }
 
   handleCommentDelete = (commentId) => {
@@ -116,9 +116,9 @@ class Post extends Component {
         <p>{this.props.post.body}</p>
         {options}
         <ul className="comment-list">
-          <form onClick={this.handleSubmit} id={`comment-form-${this.props.post._id}`}>
-            <input type="text" name="comment" placeholder="Leave a comment" className="comment-box" onChange={this.handleChange} />
-            <input type="submit" value="Comment" className="comment-submit" data-id={`${this.props.post._id}`}/>
+          <form onSubmit={this.handleSubmit} id={`comment-form-${this.props.post._id}`} data-id={`${this.props.post._id}`}>
+            <input type="text" name="comment" placeholder="Leave a comment" value={this.state.comment} className="comment-box" onInput={this.handleChange} />
+            <input type="submit" value="Comment" className="comment-submit" />
           </form>
           {comments}
         </ul>
@@ -133,7 +133,7 @@ const mapStateToProps = state => {
 }; 
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ deletePost, getComments, createComment, deleteComment, deletePostComments }, dispatch);
+  return bindActionCreators({ getPosts, deletePost, getComments, createComment, deleteComment, deletePostComments }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

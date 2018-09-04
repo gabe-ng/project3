@@ -10,10 +10,17 @@ const commentReducer = (state = defaultCommentState, action) => {
         return { ...state };
       case "GET_COMMENTS_SUCCESS":
         let commentsState = { ...state };
-        commentsState.comments = action.comments.map(comment => {
-            if (comment.hasOwnPropety("user") && comment.hasOwnPropety("post"))
+        console.log("BEFOREQDWJDQJDWQJ", commentsState);
+        console.log(action.comments);
+        
+         let filtered = action.comments.map(comment => {
+            console.log(comment);
+            if (comment)
                 return comment;
             });
+          commentsState.comments = filtered;
+          console.log("AFTQWEWQDWQDQWDWQD", commentsState);
+          
         return commentsState;
       case "CREATING_COMMENT":
         return { ...state }
@@ -21,9 +28,9 @@ const commentReducer = (state = defaultCommentState, action) => {
         return { ...state };
       case "CREATE_COMMENT_SUCCESS":
         let newCommentState = { ...state };
-        for (let comment of action.comments) {
-        newCommentState.comments.push(comment);
-        }
+        console.log("DUQWDQJDQWDJJD", action.comment);
+        
+        newCommentState.comments.push(action.comment);
         return newCommentState;
       case "DELETING_COMMENT":
         return { ...state };
