@@ -22,7 +22,7 @@ class HomepageContainer extends Component {
           <Friends currentUser={this.props.currentUser}/>
         </div>
       <PostContainer style={this.state.postContainerMargin} currentUser={this.props.currentUser}/>
-        <Chatbox />
+        <Chatbox currentUser={this.props.currentUser} />
       </div>;
   }
 }

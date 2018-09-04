@@ -8,40 +8,60 @@ class Chatbox extends Component {
     messages: [],
   }
 
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    })
+  }
+
+
   socket = io('http://localhost:3001');
+
+  componentDidMount = () => {
+    this.socket.on('RECEIVE_MESSAGE', (data) => {
+      this.addMessage(data);
+    });
+    console.log(this.state);
+
+  }
+  
+  addMessage = data => {
+    console.log(data);
+    this.setState({ messages: [...this.state.messages, data] });
+    console.log(this.state.messages);
+  };
+
+  sendMessage = e => {
+    e.preventDefault();
+    if (this.state.message !== "") {
+      this.socket.emit('SEND_MESSAGE', {
+        author: this.props.currentUser.user.username,
+        message: this.state.message
+      })
+    }
+    this.setState({ message: '' });
+  }
 
 
   render(){
-    console.log(this.socket);
+    console.log(this.props);
     
-    return (
-      <div className="container">
-        <div className="row">
-          <div className="col-4">
-            <div className="card">
-              <div className="card-body">
-                <div className="card-title">Global Chat</div>
-                <hr />
+    
+    return <div className="chatbox">
+                <div className="chat-title">Let's Chat</div>
                 <div className="messages">
                   {this.state.messages.map(message => {
-                    return (
-                      <div>{message.author}: {message.message}</div>
-                    )
+                    return <div>
+                        {message.author}: {message.message}
+                      </div>;
                   })}
                 </div>
-              </div>
-              <div className="card-footer">
-                <input type="text" placeholder="Username" className="form-control" />
+              <input type="text" placeholder="Message" value={this.state.message} className="form-control" name="message" onChange={this.handleChange} />
                 <br />
-                <input type="text" placeholder="Message" className="form-control" />
-                <br />
-                <button className="btn btn-primary form-control">Send</button>
-              </div>
+                <button className="btn btn-primary form-control" onClick={this.sendMessage}>
+                  Send
+                </button>
             </div>
-          </div>
-        </div>
-      </div>
-    );
   }
 }
 

@@ -11,7 +11,7 @@ const commentReducer = (state = defaultCommentState, action) => {
       case "GET_COMMENTS_SUCCESS":
         let commentsState = { ...state };
         commentsState.comments = action.comments.map(comment => {
-            if (comment.user !== undefined && comment.post !== undefined)
+            if (comment.hasOwnPropety("user") && comment.hasOwnPropety("post"))
                 return comment;
             });
         return commentsState;
