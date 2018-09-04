@@ -26,20 +26,6 @@ const getUsers = (req, res) => {
   });
 };
 
-// const getUsers = (req, res) => {
-//   db.User.find({}, (err, users) => {
-//     if (err) {
-//       console.log(err);
-//       return;
-//     }
-//     res.json({
-//       users: users
-//     });
-//   });
-// };
-
-// GET /api/users/show/:id
-
 const getUser = (req, res) => {
   jwt.verify(req.token, "secretKey", (err, authData) => {
     if (err) {
@@ -50,10 +36,10 @@ const getUser = (req, res) => {
           console.log(err);
           return;
         }
-        console.log(user);
-  
+        console.log("USEUWDUWDUQW", user);
+        if (user) {
         let userInfo = {
-          id: user.id,
+          id: user._id,
           name: user.name,
           username: user.username,
           email: user.email,
@@ -64,6 +50,7 @@ const getUser = (req, res) => {
           user: userInfo,
           authData
         });
+      }
       });
     }
   });

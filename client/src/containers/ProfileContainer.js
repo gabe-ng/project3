@@ -52,8 +52,8 @@ class ProfileContainer extends Component {
     
     return (
       <div className="profile-container">
-        <Bio user={this.props.state.profileInfo} />
-        <Stats user={this.props.state.profileInfo} />
+        <Bio userProfile={this.props.state.profileInfo} currentUser={this.props.currentUser} />
+        <Stats userProfile={this.props.state.profileInfo} />
         <PostContainer
           style={this.state.postContainerMargin}
           currentUser={this.props.state.profileInfo}
