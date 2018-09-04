@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { updateUser } from "../redux/actions/userActions";
+import { updateUser } from "../../redux/actions/userActions";
 
 
 class Bio extends Component {
@@ -36,6 +36,11 @@ class Bio extends Component {
       .then(res => {
         console.log(res);
       })
+      .then(() => {
+        this.setState({
+          editingAboutMe: false,
+        })
+      })
       .catch(err => {
         console.log(err);  
       })
@@ -51,8 +56,8 @@ class Bio extends Component {
       if (this.state.editingAboutMe) {
         aboutMe = (
           <div className="about-me-container">
-          <form onClick={this.handleAboutMeUpdate}>
-            <textarea name="aboutMe" defaultValue={this.props.userProfile.user.aboutMe} ></textarea>
+          <form onSubmit={this.handleAboutMeUpdate}>
+            <textarea name="aboutMe" defaultValue={this.props.userProfile.user.aboutMe} onInput={this.handleChange} ></textarea>
             <input type="submit" value="Update" />
           </form>
           <button onClick={this.toggleUpdate} >Cancel</button>

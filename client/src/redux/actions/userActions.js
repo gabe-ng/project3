@@ -53,20 +53,21 @@ export const updateUserError = () => {
     }
 }
 
-export const updateUserSuccess = () => {
+export const updateUserSuccess = (userInfo) => {
     return {
-        type: "UPDATE_USER_SUCCESS"
+        type: "UPDATE_USER_SUCCESS",
+        userInfo,
     }
 }
 
-export const updateUser = (userId) => {
+export const updateUser = (userId, update) => {
     return dispatch => {
 
         dispatch(updatingUser());
 
         return axios.put("http://localhost:3001/api/users/" + userId, update)
             .then(res => {
-                dispatch(updateUserSuccess())
+                dispatch(updateUserSuccess(res.data))
             })
             .catch(err => {
                 dispatch(updateUserError);

@@ -195,9 +195,17 @@ const updateUser = (req, res) => {
             console.log(err);
             return;
           }
-          console.log(user);
-          
-          res.status(200).send("User successfully updated");
+          let userInfo = {
+            id: user._id,
+            name: user.name,
+            username: user.username,
+            email: user.email,
+            aboutMe: user.aboutMe,
+            joinDate: user.joinDate
+          }
+          res.json({
+            user: userInfo,
+          });
         }
       );
     }
