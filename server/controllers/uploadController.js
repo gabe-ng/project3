@@ -2,7 +2,7 @@ const multer = require("multer");
 
 // Set Storage Engine
 const storage = multer.diskStorage({
-    destination: './public/uploads',
+    destination: '../public/uploads',
     filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
@@ -15,14 +15,19 @@ const upload = multer({
 
 // POST /api/:user_id/upload
 const uploadImage = (req, res) => {
+    // console.log("uploadImage", req);
+    
     upload(req, res, (err) => {
+        // console.log("upload", req);
+        
         if (err) {
             res.json({
                 error: err,
                 msg: "Error Uploading Image"
             })
         } else {
-            console.log(req.file); 
+            console.log("REQ BODY FILE", req.body.file); 
+            console.log("REQ FILE", req.file); 
         }
     })
 }

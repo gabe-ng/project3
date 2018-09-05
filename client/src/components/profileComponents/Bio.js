@@ -83,7 +83,9 @@ class Bio extends Component {
           </div>;
     }
       if (this.state.uploadPicture) {
-        profileImg = <AvatarUpload toggleUpload={this.toggleUpload} currentUser={this.props.currentUser} />
+        profileImg = (<div className="image-container">
+                      <AvatarUpload toggleUpload={this.toggleUpload} currentUser={this.props.currentUser} />
+                    </div>)
       } else {
         profileImg = (<div className="image-container">
                     <button onClick={this.toggleUpload} >Upload Picture</button>

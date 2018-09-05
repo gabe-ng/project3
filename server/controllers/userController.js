@@ -38,7 +38,6 @@ const getUser = (req, res) => {
           console.log(err);
           return;
         }
-        console.log("USEUWDUWDUQW", user);
         if (user) {
         let userInfo = {
           id: user._id,
