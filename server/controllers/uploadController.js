@@ -12,3 +12,21 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage: storage
 }).single("myImage"); //this is the form name!!! CHANGE WHEN MAKE FORM IF NEEDED
+
+// POST /api/:user_id/upload
+const uploadImage = (req, res) => {
+    upload(req, res, (err) => {
+        if (err) {
+            res.json({
+                error: err,
+                msg: "Error Uploading Image"
+            })
+        } else {
+            console.log(req.file); 
+        }
+    })
+}
+
+module.exports = {
+    upload: uploadImage,
+}

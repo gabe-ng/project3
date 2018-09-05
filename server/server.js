@@ -43,9 +43,7 @@ const verifyToken = (req, res, next) => {
 // Routes
 
 // Multer
-app.post("/upload", (req, res) => {
-
-})
+app.post("/api/:user_id/upload", controllers.upload.upload);
 
 // Users
 app.get("/api/users", verifyToken, controllers.user.index);

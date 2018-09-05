@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 
 import { updateUser } from "../../redux/actions/userActions";
 
-import AvatarUpload from "./avatarUplaod";
+import AvatarUpload from "./avatarUpload";
 
 
 class Bio extends Component {
@@ -83,9 +83,12 @@ class Bio extends Component {
           </div>;
     }
       if (this.state.uploadPicture) {
-        profileImg = <AvatarUpload />
+        profileImg = <AvatarUpload toggleUpload={this.toggleUpload} currentUser={this.props.currentUser} />
       } else {
-        profileImg = <div className="image-container">image container</div>
+        profileImg = (<div className="image-container">
+                    <button onClick={this.toggleUpload} >Upload Picture</button>
+                    image container
+                    </div>)
       }
     }
 
