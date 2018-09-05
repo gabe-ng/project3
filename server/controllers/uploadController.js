@@ -1,4 +1,5 @@
 const multer = require("multer");
+const path = require("path");
 
 // Set Storage Engine
 const storage = multer.diskStorage({
@@ -25,8 +26,7 @@ const uploadImage = (req, res) => {
                 error: err,
                 msg: "Error Uploading Image"
             })
-        } else {
-            console.log("REQ BODY FILE", req.body.file); 
+        } else { 
             console.log("REQ FILE", req.file); 
         }
     })

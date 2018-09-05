@@ -19,9 +19,13 @@ class avatarUpload extends Component {
         
         let userId = this.props.currentUser.user.id;
         let image = this.state.myImage;
-        axios.post("http://localhost:3001/api/" + userId + "/upload", { file: image})
+
+        const data = new FormData(document.querySelector("form"));
+
+        axios.post("http://localhost:3001/api/" + userId + "/upload", data)
             .then((res) => {
                 console.log(res);
+                document.querySelector("form").reset();
             })
             .catch(err => console.log(err))    
     }
@@ -33,7 +37,7 @@ class avatarUpload extends Component {
         <div>
             <h1>Upload your profile picture</h1>
             <button onClick={this.props.toggleUpload} >Cancel</button>
-            <form onSubmit={this.handleOnSubmit}    encType="multipart/form-data">
+            <form onSubmit={this.handleOnSubmit} encType="multipart/form-data">
                 <input name="myImage" type="file" id="image-input" onChange={this.handleChange} />
                 <input name="submit" type="submit" value="Upload" />
             </form>
