@@ -41,6 +41,10 @@ const verifyToken = (req, res, next) => {
 
 // Routes
 
+app.get("/profileimage/:imagename", (req, res) => {
+    res.sendFile("public/uploads/" + req.params.imagename, { root: __dirname });
+})
+
 // Users
 app.get("/api/users", verifyToken, controllers.user.index);
 app.get("/api/users/:id", verifyToken, controllers.user.show);
