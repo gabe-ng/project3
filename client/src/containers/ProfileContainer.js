@@ -73,7 +73,4 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators({ getUserProfile }, dispatch);
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ProfileContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);

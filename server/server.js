@@ -1,21 +1,35 @@
-// Set up Express
-
 const express = require("express");
-const jwt = require('jsonwebtoken');
+const multer = require("multer");
+const path = require("path");
+const jwt = require("jsonwebtoken");
+const cors = require("cors");
+
+// init Express
 const app = express();
 
 // Set up JSON
-
 app.use(express.json());
 
 // CORS
-
-const cors = require("cors");
-
 app.use(cors());
 
-// Import controllers
+// Public Folder
+app.use(express.static('./public'));
 
+// Set Storage Engine
+const storage = multer.diskStorage({
+    destination: './public/uploads',
+    filename: function(req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+// init Upload
+const upload = multer({
+    storage: storage
+}).single("myImage"); //this is the form name!!! CHANGE WHEN MAKE FORM IF NEEDED
+
+// Import controllers
 let controllers = require("./controllers");
 
 // Format of Token
