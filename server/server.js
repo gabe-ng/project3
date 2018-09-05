@@ -1,5 +1,4 @@
 const express = require("express");
-const multer = require("multer");
 const path = require("path");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
@@ -15,19 +14,6 @@ app.use(cors());
 
 // Public Folder
 app.use(express.static('./public'));
-
-// Set Storage Engine
-const storage = multer.diskStorage({
-    destination: './public/uploads',
-    filename: function(req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    }
-});
-
-// init Upload
-const upload = multer({
-    storage: storage
-}).single("myImage"); //this is the form name!!! CHANGE WHEN MAKE FORM IF NEEDED
 
 // Import controllers
 let controllers = require("./controllers");
@@ -55,6 +41,11 @@ const verifyToken = (req, res, next) => {
 }
 
 // Routes
+
+// Multer
+app.post("/upload", (req, res) => {
+
+})
 
 // Users
 app.get("/api/users", verifyToken, controllers.user.index);

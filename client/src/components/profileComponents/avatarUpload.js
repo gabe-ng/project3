@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class avatarUpload extends Component {
 
+    handleOnSubmit = (e) => {
+        e.preventDefault();
+    }
 
     render () {
         <div>

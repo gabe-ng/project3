@@ -3,4 +3,5 @@ module.exports = {
     post: require("./postController"),
     comment: require("./commentController"),
     friends: require("./friendsController"),
+    upload: require("./uploadController"),
 }

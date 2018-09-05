@@ -4,11 +4,14 @@ import { bindActionCreators } from "redux";
 
 import { updateUser } from "../../redux/actions/userActions";
 
+import AvatarUpload from "./avatarUplaod";
+
 
 class Bio extends Component {
   state = {
     aboutMe: '',
-    editingAboutMe: false
+    editingAboutMe: false,
+    uploadPicture: false,
   }
 
   handleChange = (e) => {
@@ -17,10 +20,16 @@ class Bio extends Component {
     })
   }
 
-  toggleUpdate = () => {
+  toggleEditUpdate = () => {
     this.setState({
       editingAboutMe: !(this.state.editingAboutMe),
       aboutMe: '',
+    })
+  }
+
+  toggleUpload = () => {
+    this.setState({
+      uploadPicture: !(this.state.uploadPicture),
     })
   }
 
@@ -60,7 +69,7 @@ class Bio extends Component {
             <textarea name="aboutMe" defaultValue={this.props.userProfile.user.aboutMe} onInput={this.handleChange} ></textarea>
             <input type="submit" value="Update" />
           </form>
-          <button onClick={this.toggleUpdate} >Cancel</button>
+          <button onClick={this.toggleEditUpdate} >Cancel</button>
           </div>
         )
     } else {
@@ -68,14 +77,16 @@ class Bio extends Component {
             <h1>About Me</h1>
             <p>{this.props.userProfile.user.aboutMe}</p>
             {this.props.userProfile.user.id === this.props.currentUser.user.id
-              ? <button onClick={this.toggleUpdate}>(Edit)</button>
+              ? <button onClick={this.toggleEditUpdate}>(Edit)</button>
               : <p></p>
             }
           </div>;
     }
-
-    profileImg = <div className="image-container">image container</div>
-
+      if (this.state.uploadPicture) {
+        profileImg = <AvatarUpload />
+      } else {
+        profileImg = <div className="image-container">image container</div>
+      }
     }
 
     return <div className="profile-bio">{profileImg} {aboutMe}</div>;
