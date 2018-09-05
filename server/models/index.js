@@ -8,10 +8,12 @@ let User = require("./user");
 let Post = require("./post");
 let Comment = require("./comment");
 let Friends = require("./friends");
+let ProfileImage = require("./profileImage");
 
 module.exports = {
     User: User,
     Post: Post,
     Comment: Comment,
-    Friends: Friends
+    Friends: Friends,
+    ProfileImage: ProfileImage,
 }

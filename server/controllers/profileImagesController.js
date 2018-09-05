@@ -1,6 +1,9 @@
 const multer = require("multer");
 const path = require("path");
 
+// load in models
+let db = require("../models");
+
 // Set Storage Engine
 const storage = multer.diskStorage({
     destination: 'public/uploads',
@@ -34,14 +37,37 @@ const checkFileType = (file, cb) => {
     }
 }
 
+// GET /api/profileimages
+const profileImages = (req, res) => {
+    db.ProfileImage.find({})
+      .populate("user")
+      .exec((err, foundImages) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      res.json(foundImages);
+    });
+}
+
+// GET /api/profileimages/:id
+const profileImage = (req, res) => {
+    let id = req.params.id;
+    db.ProfileImage.findById(id, (err, foundImage) => {
+        if (err){
+            console.log(err);
+            return;
+        }
+        res.json(foundImage);
+    })
+}
+
 // POST /api/:user_id/upload
 const uploadImage = (req, res) => {
-    // console.log("uploadImage", req);
     console.log("in route");
     
     upload(req, res, (err) => {
-        // console.log("upload", req);
-        
+
         if (err) {
             res.json({
                 error: err,
@@ -49,10 +75,20 @@ const uploadImage = (req, res) => {
             })
         } else { 
             console.log("REQ FILE", req.file); 
+            // create new profile image
+            let newImage = new db.ProfileImage({
+                user: req.params.user_id,
+                name: req.file.filename,
+                mimetype: req.file.mimetype,
+            });
+            newImage.save();
+            res.json(newImage)
         }
     })
 }
 
 module.exports = {
+    index: profileImages,
+    show: profileImage,
     upload: uploadImage,
 }

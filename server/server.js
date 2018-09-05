@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors());
 
 // Public Folder
-app.use(express.static('./public'));
+app.use(express.static('public'));
 
 // Import controllers
 let controllers = require("./controllers");
@@ -41,15 +41,18 @@ const verifyToken = (req, res, next) => {
 
 // Routes
 
-// Multer
-app.post("/api/:user_id/upload", controllers.upload.upload);
-
 // Users
 app.get("/api/users", verifyToken, controllers.user.index);
 app.get("/api/users/:id", verifyToken, controllers.user.show);
 app.post("/api/users/create", controllers.user.create);
 app.post("/api/users/login", controllers.user.login);
 app.put("/api/users/:id", verifyToken, controllers.user.update);
+
+// Profile Images
+app.get("/api/profileimages/", controllers.profileImages.index);
+app.get("/api/profileimages/:id", controllers.profileImages.show);
+app.post("/api/:user_id/upload", controllers.profileImages.upload);
+
 
 // Friends
 app.get("/api/friends", controllers.friends.show);
