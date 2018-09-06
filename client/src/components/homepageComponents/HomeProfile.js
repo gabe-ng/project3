@@ -6,8 +6,8 @@ import { getProfileImage } from "../../redux/actions/profileImageActions";
 
 
 class HomeProfile extends Component {
-  componentWillUpdate = (nextProps, nextState) => {
 
+  componentWillUpdate = (nextProps, nextState) => {
     if (nextProps.currentUser.user !== this.props.currentUser.user) {
       this.props
         .getProfileImage(nextProps.currentUser.user.id)
@@ -19,14 +19,21 @@ class HomeProfile extends Component {
   };
 
   render() {
-
     let profile;
     let image;
 
-    if (this.props.imageState.image) {
-      image = <img src={`http://localhost:3001/profileimage/${
-        this.props.imageState.image[0].name
-        }`} className="homepage-image" />
+    if (
+      this.props.imageState.image &&
+      this.props.imageState.image.length !== 0
+    ) {
+      image = (
+        <img
+          src={`http://localhost:3001/profileimage/${
+            this.props.imageState.image[0].name
+          }`}
+          className="homepage-image"
+        />
+      );
     }
 
     if (this.props.currentUser.user) {
