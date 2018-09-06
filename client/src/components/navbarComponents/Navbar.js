@@ -2,6 +2,11 @@ import React, { Component } from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Icon } from "react-icons-kit";
+import {home} from 'react-icons-kit/fa/home';
+import {userCircleO} from 'react-icons-kit/fa/userCircleO';
+import {users} from 'react-icons-kit/fa/users';
+import {powerOff} from 'react-icons-kit/fa/powerOff'
 
 import { logOut, stillLoggedIn } from "../../redux/actions/authActions";
 
@@ -27,31 +32,28 @@ class Navbar extends Component {
   }
 
   render() {
-    // console.log('Current User', this.props.state.currentUser.user);
-    // let user = this.props.state.currentUser;
-    // console.log(user.user);
     
     let options;
     if (this.props.authState.isAuthenticated || this.state.isAuthenticated) {
       options = <ul>
           <li>
             <NavLink to="/homepage" activeClassName="active-nav" className="nav-item">
-              Home
+              <Icon icon={home} size={24}/>
             </NavLink>
           </li>
           <li>
           <NavLink to={`/profile/${this.props.authState.currentUser.user.id}`} activeClassName="active-nav" className="nav-item">
-              Profile
+             <Icon icon={userCircleO} size={22}/>
             </NavLink>
           </li>
           <li>
             <NavLink to="/allusers" activeClassName="active-nav" className="nav-item">
-              All Users
+             <Icon icon={users} size={22}/>
             </NavLink>
           </li>
           <li>
             <a href="" onClick={this.handleLogout} className="nav-item nav-logout">
-              Logout
+             <Icon icon={powerOff} size={22}/>
             </a>
           </li>
         </ul>;
@@ -73,7 +75,7 @@ class Navbar extends Component {
     }
     return (
       <div className="navbar">
-        <h1 className="navbar-title">LOGO</h1>
+        <h1 className="navbar-title">PLS HIRE ME FACEBOOK</h1>
         {options}
       </div>
     );

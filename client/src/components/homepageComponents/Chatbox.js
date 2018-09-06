@@ -5,7 +5,6 @@ class Chatbox extends Component {
   state = {
     username: '',
     message: '',
-    messageId: 0,
     messages: [],
   }
 
@@ -36,10 +35,10 @@ class Chatbox extends Component {
       this.socket.emit('SEND_MESSAGE', {
         author: this.props.currentUser.user.username,
         message: this.state.message,
-        id: this.state.messageId,
+        id: Math.floor(Math.random() * 10000),
       })
     }
-    this.setState({ message: '', messageId: this.state.messageId + 1});
+    this.setState({ message: '',});
     
   }
 
