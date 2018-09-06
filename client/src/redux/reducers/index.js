@@ -5,6 +5,7 @@ import postReducer from "./postReducer";
 import authReducer from "./authReducer";
 import friendsReducer from "./friendsReducer";
 import commentReducer from "./commentReducer";
+import profileImageReducer from "./profileImageReducer";
 
 const rootReducer = combineReducers({
     userReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     authReducer,
     friendsReducer,
     commentReducer,
+    profileImageReducer,
 });
 
 export default rootReducer;

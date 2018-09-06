@@ -50,10 +50,10 @@ const profileImages = (req, res) => {
     });
 }
 
-// GET /api/profileimages/:id
+// GET /api/profileimages/:user_id
 const profileImage = (req, res) => {
-    let id = req.params.id;
-    db.ProfileImage.findById(id, (err, foundImage) => {
+    let id = req.params.user_id;
+    db.ProfileImage.find({ user: id }, (err, foundImage) => {
         if (err){
             console.log(err);
             return;
@@ -64,8 +64,6 @@ const profileImage = (req, res) => {
 
 // POST /api/:user_id/upload
 const uploadImage = (req, res) => {
-    console.log("in route");
-    
     upload(req, res, (err) => {
         if (err) {
             res.json({

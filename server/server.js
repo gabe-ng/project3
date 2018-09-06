@@ -54,7 +54,7 @@ app.put("/api/users/:id", verifyToken, controllers.user.update);
 
 // Profile Images
 app.get("/api/profileimages/", controllers.profileImages.index);
-app.get("/api/profileimages/:id", controllers.profileImages.show);
+app.get("/api/profileimages/:user_id", controllers.profileImages.show);
 app.post("/api/:user_id/upload", controllers.profileImages.upload);
 
 
