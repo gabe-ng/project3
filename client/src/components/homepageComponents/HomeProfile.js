@@ -6,13 +6,8 @@ import { getProfileImage } from "../../redux/actions/profileImageActions";
 
 
 class HomeProfile extends Component {
-  componentDidMount = () => {
-    console.log("mounting HOME");
-  };
-
   componentWillUpdate = (nextProps, nextState) => {
-    console.log("IN CWUUUUU");
-    
+
     if (nextProps.currentUser.user !== this.props.currentUser.user) {
       this.props
         .getProfileImage(nextProps.currentUser.user.id)
@@ -24,9 +19,6 @@ class HomeProfile extends Component {
   };
 
   render() {
-    console.log("JQJQJDQJDDJQ", this.props.currentUser.user);
-    console.log(this.props);
-    
 
     let profile;
     let image;
