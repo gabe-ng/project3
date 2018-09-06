@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { uploadProfileImage } from "../../redux/actions/profileImageActions";
+import { getProfileImage, uploadProfileImage } from "../../redux/actions/profileImageActions";
 
 class avatarUpload extends Component {
 
@@ -22,8 +22,9 @@ class avatarUpload extends Component {
             .then((res) => {
                 console.log(res);
                 document.querySelector("form").reset();
-                this.props.toggleUpload();
+                this.props.getProfileImage(this.props.userId);
             })
+            .then(() => this.props.toggleUpload())
             .catch(err => console.log(err))    
     }
 
@@ -43,7 +44,7 @@ class avatarUpload extends Component {
 }
 
 const mapDispatchToProps = dispatch => {
-    return bindActionCreators({ uploadProfileImage }, dispatch);
+    return bindActionCreators({ getProfileImage, uploadProfileImage }, dispatch);
 };
 
 export default connect(null, mapDispatchToProps)(avatarUpload);

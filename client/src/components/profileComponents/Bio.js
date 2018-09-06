@@ -116,6 +116,7 @@ class Bio extends Component {
             <AvatarUpload
               toggleUpload={this.toggleUpload}
               currentUser={this.props.currentUser}
+              userId={this.props.userId}
             />
           </div>
         );
