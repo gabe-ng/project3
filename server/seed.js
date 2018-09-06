@@ -40,5 +40,12 @@ db.Comment.deleteMany({}, (err, comments) => {
         console.log("Error", err);
         return;
     }
+});
+
+db.ProfileImage.deleteMany({}, (err, comments) => {
+    if (err) {
+        console.log("Error", err);
+        return;
+    }
     process.exit();
 });

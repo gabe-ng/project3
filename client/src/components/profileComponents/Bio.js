@@ -89,8 +89,8 @@ class Bio extends Component {
       } else {
         profileImg = (<div className="image-container">
                     <button onClick={this.toggleUpload} >Upload Picture</button>
-                    image container
-                    </div>)
+                    {/*<img src="http://localhost:3001/profileimage/myImage-1536188867714.jpg" alt="" className="profile-image"/>*/}
+                   </div>)
       }
     }
 

@@ -26,6 +26,11 @@
     margin: 1em auto;
 }
 
+.profile-image {
+    width: 200px;
+    height: 230px;
+}
+
 .about-me-container {
     border: 1px solid black;
     width: 90%;

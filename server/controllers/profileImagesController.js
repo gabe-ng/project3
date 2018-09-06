@@ -67,13 +67,19 @@ const uploadImage = (req, res) => {
     console.log("in route");
     
     upload(req, res, (err) => {
-
         if (err) {
             res.json({
                 error: err,
                 msg: "Error Uploading Image"
             })
         } else { 
+            db.ProfileImage.findOneAndRemove({user: req.params.user_id}, (err, foundImage) => {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+            })
+
             console.log("REQ FILE", req.file); 
             // create new profile image
             let newImage = new db.ProfileImage({
