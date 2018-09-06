@@ -17,6 +17,8 @@ const postReducer = (state = defaultPostState, action) => {
       case "CREATE_POST_SUCCESS":
         console.log("create post successful");
         return { ...state };
+      case "EDIT_POST_SUCCESS":
+        return { ...state };
       case "DELETE_POST_SUCCESS":
         console.log("delete post successful");
         let newDeletedState = { ...state };

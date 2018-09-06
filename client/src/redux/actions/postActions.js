@@ -1,5 +1,39 @@
 import axios from "axios";
 
+export const getPostSuccess = () => {
+    return {
+        type: "GET_POST",
+    }
+}
+
+export const getPost = (postId) => {
+    return dispatch => {
+        return axios.get("http://localhost:3001/api/posts/" + postId)
+            .then(res => {
+                dispatch(getPostSuccess());
+                return res.data
+            })
+            .catch(err => console.log(err))
+    }
+}
+
+export const getPostsSuccess = (posts) => {
+    return {
+        type: "GET_POSTS",
+        posts
+    }
+}
+
+export const getPosts = () => {
+    return dispatch => {
+        return axios.get("http://localhost:3001/api/posts")
+            .then(res => {
+                return dispatch(getPostsSuccess(res.data))
+            })
+            .catch(err => console.log(err))
+    }
+}
+
 export const creatingPost = () => {
     return {
         type: "CREATING_POST"
@@ -31,20 +65,19 @@ export const createPost = (post, userId) => {
     }
 }
 
-export const getPostsSuccess = (posts) => {
+export const editPostSuccess = () => {
     return {
-        type: "GET_POSTS",
-        posts
+        type: "EDIT_POST_SUCCESS"
     }
 }
 
-export const getPosts = () => {
+export const editPost =(postId, update) => {
     return dispatch => {
-        return axios.get("http://localhost:3001/api/posts")
+        return axios.put("http://localhost:3001/api/posts/" + postId, update)
             .then(res => {
-                return dispatch(getPostsSuccess(res.data))
+                dispatch(editPostSuccess())
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
     }
 }
 

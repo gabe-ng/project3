@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-// import { editPost } from "../../redux/actions/postActions";
+import { getPost, getPosts, editPost } from "../../redux/actions/postActions";
 
-import axios from "axios";
 
 class EditPostForm extends Component {
   state = {
@@ -19,13 +18,12 @@ class EditPostForm extends Component {
   };
 
   componentDidMount = () => {
-    axios.get("http://localhost:3001/api/posts/" + this.props.postId)
+    this.props.getPost(this.props.postId)
       .then(res => {
-        console.log(res.data);
-        
+        console.log(res);
         this.setState({
-          title: res.data.title,
-          body: res.data.body,
+          title: res.title,
+          body: res.body,
         })
       })
   }
@@ -38,10 +36,9 @@ class EditPostForm extends Component {
       body: this.state.body,
     }
 
-    axios.put("http://localhost:3001/api/posts/" + this.props.postId, update)
+    this.props.editPost(this.props.postId, update)
       .then(res => {
-        console.log("success");
-        console.log(res);
+        // this.props.getPosts();
         this.props.cancel();
       })
       .catch(err => console.log(err))
@@ -68,8 +65,8 @@ class EditPostForm extends Component {
 }
 
 
-// const mapDispatchToProps = dispatch => {
-//   return bindActionCreators({ editPost }, dispatch);
-// };
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({ getPost, getPosts, editPost }, dispatch);
+};
 
-export default connect(null, null)(EditPostForm);
+export default connect(null, mapDispatchToProps)(EditPostForm);
