@@ -33,6 +33,6 @@
     border: 1px solid black;
     width: 25vw;
     height: 50vh;
-    align-self: center;
+    /* align-self: center; */
     margin: 0 auto 0 0;
 }

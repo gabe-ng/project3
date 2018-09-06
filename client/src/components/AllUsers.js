@@ -27,7 +27,7 @@ class AllUsers extends Component {
          }
         return (
             <div className="user-list">
-                <h1>All Users</h1>
+                <h1>My Friends</h1>
                 {userList}
             </div>
         )

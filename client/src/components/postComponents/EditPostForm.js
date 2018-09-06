@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { getPost, getPosts, editPost } from "../../redux/actions/postActions";
+import { getPost, editPost } from "../../redux/actions/postActions";
 
 
 class EditPostForm extends Component {
@@ -38,7 +38,6 @@ class EditPostForm extends Component {
 
     this.props.editPost(this.props.postId, update)
       .then(res => {
-        // this.props.getPosts();
         this.props.cancel();
       })
       .catch(err => console.log(err))
@@ -48,7 +47,7 @@ class EditPostForm extends Component {
     console.log(this.props);
     console.log(this.state);
     
-    let placeholder = this.state.body; // FIX THIS
+    let placeholder = this.state.body; // FIX THIS ))))))):
     return (
       <div>
         <div className="card">
@@ -66,7 +65,7 @@ class EditPostForm extends Component {
 
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ getPost, getPosts, editPost }, dispatch);
+  return bindActionCreators({ getPost, editPost }, dispatch);
 };
 
 export default connect(null, mapDispatchToProps)(EditPostForm);

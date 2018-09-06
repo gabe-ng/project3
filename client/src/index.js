@@ -7,6 +7,7 @@ import configureStore from "./redux/configStore";
 import App from "./App";
 
 import "./styles/reset.css";
+import "./styles/index.css";
 
 
 import registerServiceWorker from './registerServiceWorker';
