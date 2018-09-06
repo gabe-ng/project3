@@ -38,22 +38,22 @@ class Navbar extends Component {
       options = <ul>
           <li>
             <NavLink to="/homepage" activeClassName="active-nav" className="nav-item">
-              <Icon icon={home} size={24}/>
+              <Icon icon={home} size={28}/>
             </NavLink>
           </li>
           <li>
           <NavLink to={`/profile/${this.props.authState.currentUser.user.id}`} activeClassName="active-nav" className="nav-item">
-             <Icon icon={userCircleO} size={22}/>
+             <Icon icon={userCircleO} size={25}/>
             </NavLink>
           </li>
           <li>
             <NavLink to="/allusers" activeClassName="active-nav" className="nav-item">
-             <Icon icon={users} size={22}/>
+             <Icon icon={users} size={25}/>
             </NavLink>
           </li>
           <li>
             <a href="" onClick={this.handleLogout} className="nav-item nav-logout">
-             <Icon icon={powerOff} size={22}/>
+             <Icon icon={powerOff} size={25}/>
             </a>
           </li>
         </ul>;

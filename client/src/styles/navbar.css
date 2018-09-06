@@ -18,7 +18,7 @@
 }
 
 .navbar li {
-    padding: 0 2.5rem;
+    padding: 0 2rem;
 }
 
 .nav-item {
@@ -26,6 +26,12 @@
     cursor: pointer;
 }
 
-.nav-item:hover {
-    color: blue;
+.active-nav {
+    /* color: #355077; */
+    color: rgb(159, 208, 226);
 }
+
+.nav-item:hover {
+    color: #B3D5E1;
+}
+

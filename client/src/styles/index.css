@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
 body {
     background-color: #B3D5E1;
+    font-family: 'Nunito', sans-serif;
 }

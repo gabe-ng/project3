@@ -123,7 +123,9 @@ class Bio extends Component {
       } else {
         profileImg = (
           <div className="image-container">
-            <button onClick={this.toggleUpload}>Upload Picture</button>
+            {this.props.userProfile.user.id === this.props.currentUser.user.id ?
+              <button onClick={this.toggleUpload}>Upload Picture</button>
+              : <p></p>}
             {this.props.imageState.image[0] ? (
               <img
                 src={`http://localhost:3001/profileimage/${

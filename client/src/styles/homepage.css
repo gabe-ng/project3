@@ -11,22 +11,38 @@
 }
 
 .homepage-profile {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     height: 20vh;
     width: 22vw;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.homepage-profile h2,
+.homepage-friends {
+    font-size: 2em;
+}
+
+.homepage-image-container {
+    width: 11vw;
+    height: 21vh;
+    margin-top: .5em;
 }
 
 .homepage-image {
-    width: 140px;
-    height: 170px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
 }
 
 .homepage-friends {
-    border: 1px solid black;
-    height: 60vh;
+    /* border: 1px solid black; */
+    height: 55vh;
     width: 22vw;
-    margin-top: 1rem;
+    margin-top: 6rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .chatbox {

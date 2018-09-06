@@ -37,12 +37,10 @@ class HomeProfile extends Component {
     }
 
     if (this.props.currentUser.user) {
-      profile = (
-        <div className="homepage-profile">
+      profile = <div className="homepage-profile">
           <h2>Hi {this.props.currentUser.user.name}!</h2>
-          {image}
-        </div>
-      );
+          <div className="homepage-image-container">{image}</div>
+        </div>;
     }
 
     return <div>{profile}</div>;
