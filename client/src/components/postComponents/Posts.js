@@ -33,8 +33,9 @@ class Posts extends Component {
   render() {
 
     let posts = this.props.postState.posts.map(post => {
-      return <Post currentUser={this.props.currentUser} key={post._id} id={post._id} post={post} />;
+      return <Post currentUser={this.props.currentUser} key={post._id} id={post._id} post={post} editPost={this.props.toggleEditPost} />;
     });
+
     
     return <div className="posts-list">
         {posts}

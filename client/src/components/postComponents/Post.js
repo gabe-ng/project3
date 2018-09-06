@@ -5,8 +5,6 @@ import { bindActionCreators } from "redux";
 import { getPosts, deletePost } from "../../redux/actions/postActions";
 import { getComments, createComment, deleteComment, deletePostComments } from "../../redux/actions/commentActions";
 
-// import EditPostForm from "./EditPostForm";
-
 class Post extends Component {
   state = {
     comment: '',
@@ -71,7 +69,7 @@ class Post extends Component {
       // A user can see the edit and delete options only if they are the post creators
       if (this.props.post.user._id === this.props.currentUser.user.id) {
         options = <span>
-            <span className="post-option">
+            <span className="post-option" data-id={this.props.post._id} onClick={this.props.editPost}>
               Edit
             </span> | <span className="post-option" onClick={() => this.handlePostDelete(this.props.post._id)}>
               Delete
