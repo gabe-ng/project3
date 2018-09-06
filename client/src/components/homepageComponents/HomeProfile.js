@@ -30,7 +30,7 @@ class HomeProfile extends Component {
         <img
           src={`http://localhost:3001/profileimage/${
             this.props.imageState.image[0].name
-          }`}
+          }`} alt=""
           className="homepage-image"
         />
       );

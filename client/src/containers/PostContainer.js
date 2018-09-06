@@ -45,7 +45,7 @@ class PostContainer extends Component {
       {this.state.addingPost 
           ? <CreatePostFrom currentUser={this.props.currentUser} close={this.cancelAction} /> 
           : this.state.editingPost 
-            ? <EditPostForm />
+            ? <EditPostForm postId={this.state.editPostId} cancel={this.cancelAction} />
             : <Posts currentUser={this.props.currentUser} toggleEditPost={this.toggleEditPost} />}
       </div>;
   }

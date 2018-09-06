@@ -62,8 +62,10 @@ app.post("/api/:user_id/upload", controllers.profileImages.upload);
 app.get("/api/friends", controllers.friends.show);
 
 // Posts
-app.get("/api/posts", controllers.post.show);
+app.get("/api/posts", controllers.post.index);
+app.get("/api/posts/:id", controllers.post.show);
 app.post("/api/posts/new/:user_id", controllers.post.create);
+app.put("/api/posts/:id", controllers.post.update);
 app.delete("/api/posts/:id", controllers.post.delete);
 
 // Comments
