@@ -19,17 +19,18 @@ class Bio extends Component {
     console.log(this.props.userId);
     this.props.getProfileImage(this.props.userId)
       .then(res => {
-        console.log("in cdm THEN");
-        
-      });
+        console.log(res);
+      })
+      .catch(err => console.log(err))
   };
 
   componentWillUpdate = (nextProps, nextState) => {
     if (nextProps.userId !== this.props.userId) {
       this.props.getProfileImage(nextProps.userId)
         .then(res => {
-          console.log("in cdm THEN")
-        });
+          console.log(res)
+        })
+        .catch(err => console.log(err))
     }
   };
 

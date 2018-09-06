@@ -10,6 +10,14 @@ const imageReducer = (state = defaultImageState, action) => {
             let newImageState = { ...state };
             newImageState.image = action.image;
             return newImageState;
+        case "UPLOADING_PROFILE_IMAGE":
+            return { ...state };
+        case "UPLOADING_PROFILE_IMAGE_ERROR":
+            return { ...state };
+        case "UPLOADING_PROFILE_IMAGE_SUCCESS":
+            let uploadImageState = { ...state };
+            uploadImageState.image = action.image;
+            return uploadImageState;
         default:
             return { ...state };
     }

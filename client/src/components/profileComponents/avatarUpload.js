@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
+import { uploadProfileImage } from "../../redux/actions/profileImageActions";
 
 class avatarUpload extends Component {
 
@@ -13,13 +16,13 @@ class avatarUpload extends Component {
         e.preventDefault();
         
         let userId = this.props.currentUser.user.id;
-
         const data = new FormData(document.querySelector("form"));
 
-        axios.post("http://localhost:3001/api/" + userId + "/upload", data)
+        this.props.uploadProfileImage(userId, data)
             .then((res) => {
                 console.log(res);
                 document.querySelector("form").reset();
+                this.props.toggleUpload();
             })
             .catch(err => console.log(err))    
     }
@@ -39,4 +42,8 @@ class avatarUpload extends Component {
     }
 }
 
-export default avatarUpload;
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({ uploadProfileImage }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(avatarUpload);

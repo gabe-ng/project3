@@ -32,3 +32,35 @@ export const getProfileImage = (userId) => {
             .catch(() => dispatch(profileImageError))
     }
 }
+
+export const uploadingProfileImage = () => {
+    return {
+        type: "UPLOADING_PROFILE_IMAGE"
+    }
+}
+
+export const uploadError = () => {
+    return {
+        type: "UPLOADING_PROFILE_IMAGE_ERROR"
+    }
+}
+
+export const uploadSuccess = (image) => {
+    return {
+        type: "UPLOADING_PROFILE_IMAGE_SUCCESS",
+        image
+    }
+}
+
+export const uploadProfileImage = (userId, image) => {
+    return dispatch => {
+
+        dispatch(uploadingProfileImage());
+
+        return axios.post("http://localhost:3001/api/" + userId + "/upload", image)
+            .then(res => {
+                dispatch(uploadSuccess(res.data));
+            })
+            .catch(err => console.log(err));
+        }
+}
