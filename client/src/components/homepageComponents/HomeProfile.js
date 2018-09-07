@@ -10,24 +10,33 @@ class HomeProfile extends Component {
   componentDidMount = () => {
     console.log("in CDM HOME");
     console.log(this.props.currentUser.user);
-    let id = this.props.currentUser.user.id;
-    console.log(id);
-    
-    // this.props.getProfileImage(this.props.currentUser.user.id)
+    // let id = this.props.currentUser.user.id;
+    // console.log(id);
+    // if (this.props.currentUser) {
+    //   this.props.getProfileImage(this.props.currentUser.user.id);
+    // }
     
   }
-  
 
-  componentWillUpdate = (nextProps, nextState) => {
-    if (nextProps.currentUser.user !== this.props.currentUser.user) {
-      this.props
-        .getProfileImage(nextProps.currentUser.user.id)
-        .then(res => {
-          console.log(res);
-        })
-        .catch(err => console.log(err));
+  componentDidUpdate = (prevProps, prevState) => {
+    console.log("in CDU", prevProps.currentUser);
+    console.log("in CDU", this.props.currentUser);
+    
+    if (prevProps.currentUser.user !== this.props.currentUser.user) {
+      this.props.getProfileImage(this.props.currentUser.user.id)
     }
-  };
+  }
+  
+  // componentWillUpdate = (nextProps, nextState) => {
+  //   if (nextProps.currentUser.user !== this.props.currentUser.user) {
+  //     this.props
+  //       .getProfileImage(nextProps.currentUser.user.id)
+  //       .then(res => {
+  //         console.log(res);
+  //       })
+  //       .catch(err => console.log(err));
+  //   }
+  // };
 
   render() {
     let profile;
