@@ -7,6 +7,17 @@ import { getProfileImage } from "../../redux/actions/profileImageActions";
 
 class HomeProfile extends Component {
 
+  componentDidMount = () => {
+    console.log("in CDM HOME");
+    console.log(this.props.currentUser.user);
+    let id = this.props.currentUser.user.id;
+    console.log(id);
+    
+    // this.props.getProfileImage(this.props.currentUser.user.id)
+    
+  }
+  
+
   componentWillUpdate = (nextProps, nextState) => {
     if (nextProps.currentUser.user !== this.props.currentUser.user) {
       this.props
@@ -21,6 +32,8 @@ class HomeProfile extends Component {
   render() {
     let profile;
     let image;
+    console.log("DJWQDUWDQDQW", this.props.currentUser);
+    
 
     if (
       this.props.imageState.image &&
