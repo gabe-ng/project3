@@ -35,11 +35,11 @@
 
 ## Wireframes
 
-![alt text](/wireframes/landing.png)
+![alt text](/wireframes/Landing.png)
 
-![alt text](/wireframes/homepage.png)
+![alt text](/wireframes/Homepage.png)
 
-![alt text](/wireframes/profile.png)
+![alt text](/wireframes/Profile.png)
 
 ## Authors
 
