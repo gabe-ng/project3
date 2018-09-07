@@ -38,12 +38,12 @@ class CreatePostForm extends Component {
       
     return (
       <div>
-            <div className="card">
+            <div className="create-post">
                 <h1>Create Post</h1>
-                <form onSubmit={this.handlePostSubmit}>
-                    <input className="form-item" placeholder="Title" name="title" type="text" onChange={this.handleChange} />
-                    <textarea className="form-item" placeholder="Post..." name="body" onChange={this.handleChange}></textarea>
-                    <input className="form-submit" value="SUBMIT" type="submit" />
+                <form className="create-post-form" onSubmit={this.handlePostSubmit}>
+                    <input className="create-post-title" placeholder="Title" name="title" type="text" onChange={this.handleChange} />
+                    <textarea className="create-post-body" placeholder="Post..." name="body" onChange={this.handleChange}></textarea>
+                    <input className="create-post-submit" value="SUBMIT" type="submit" />
                 </form>
             </div>
       </div>

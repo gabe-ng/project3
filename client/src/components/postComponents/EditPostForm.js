@@ -50,12 +50,12 @@ class EditPostForm extends Component {
     let placeholder = this.state.body; // FIX THIS ))))))):
     return (
       <div>
-        <div className="card">
+        <div className="edit-post">
           <h1>Edit Post</h1>
-          <form onSubmit={this.handlePostEdit}>
-            <input className="form-item" defaultValue={this.state.title} name="title" type="text" onChange={this.handleChange} />
-            <textarea className="form-item" value={placeholder} name="body" onChange={this.handleChange}></textarea>
-            <input className="form-submit" value="SUBMIT" type="submit" />
+          <form className="edit-post-form" onSubmit={this.handlePostEdit}>
+            <input className="edit-post-title" defaultValue={this.state.title} name="title" type="text" onChange={this.handleChange} />
+            <textarea className="edit-post-body" value={placeholder} name="body" onChange={this.handleChange}></textarea>
+            <input className="edit-post-submit" value="SUBMIT" type="submit" />
           </form>
         </div>
       </div>
