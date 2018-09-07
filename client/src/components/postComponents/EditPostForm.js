@@ -55,7 +55,7 @@ class EditPostForm extends Component {
           <form className="edit-post-form" onSubmit={this.handlePostEdit}>
             <input className="edit-post-title" defaultValue={this.state.title} name="title" type="text" onChange={this.handleChange} />
             <textarea className="edit-post-body" value={placeholder} name="body" onChange={this.handleChange}></textarea>
-            <input className="edit-post-submit" value="SUBMIT" type="submit" />
+            <input className="edit-post-submit" value="Submit" type="submit" />
           </form>
         </div>
       </div>

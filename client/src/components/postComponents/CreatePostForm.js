@@ -43,7 +43,7 @@ class CreatePostForm extends Component {
                 <form className="create-post-form" onSubmit={this.handlePostSubmit}>
                     <input className="create-post-title" placeholder="Title" name="title" type="text" onChange={this.handleChange} />
                     <textarea className="create-post-body" placeholder="Post..." name="body" onChange={this.handleChange}></textarea>
-                    <input className="create-post-submit" value="SUBMIT" type="submit" />
+                    <input className="create-post-submit" value="Submit" type="submit" />
                 </form>
             </div>
       </div>

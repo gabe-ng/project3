@@ -48,6 +48,10 @@
     line-height: 1.2;
 }
 
+.post-option {
+    cursor: pointer;
+}
+
 .options {
     text-align: right;
     margin: .5em 0 -.5em 0;
@@ -122,23 +126,29 @@
 
 .create-post-title,
 .edit-post-title {
-    font-size: 1.3em;
+    font-size: 1.1em;
     margin: 1em auto;
-    width: 18vw;
+    width: 26vw;
+    padding-left: .3em;
+}
+
+.create-post-title {
+    margin: 1em 0;
 }
 
 .create-post-body,
 .edit-post-body {
-    font-size: 1.3em;
+    font-size: 1.1em;
     height: 10vh;
-    width: 18vw;
+    width: 26vw;
     margin-bottom: .75em;
+    padding-left: .3em;
 }
 
 .create-post-submit,
 .edit-post-submit {
     font-size: 1.1em;
-    border: none;
+    border: 1px solid black;
     background: transparent;
     cursor: pointer;
 }

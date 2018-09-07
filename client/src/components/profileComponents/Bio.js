@@ -85,15 +85,15 @@ class Bio extends Component {
       if (this.state.editingAboutMe) {
         aboutMe = (
           <div className="about-me-container">
-            <form onSubmit={this.handleAboutMeUpdate}>
-              <textarea
+            <form className="about-me-form" onSubmit={this.handleAboutMeUpdate}>
+              <textarea className="about-me-body"
                 name="aboutMe"
                 defaultValue={this.props.userProfile.user.aboutMe}
                 onInput={this.handleChange}
               />
-              <input type="submit" value="Update" />
+              <input type="submit" value="Update" className="about-me-submit" />
+              <button className="about-me-cancel" onClick={this.toggleEditUpdate}>Cancel</button>
             </form>
-            <button onClick={this.toggleEditUpdate}>Cancel</button>
           </div>
         );
       } else {
