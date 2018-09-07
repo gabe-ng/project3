@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import jwt_decode from "jwt-decode"; 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
@@ -8,13 +9,10 @@ import { getProfileImage } from "../../redux/actions/profileImageActions";
 class HomeProfile extends Component {
 
   componentDidMount = () => {
-    console.log("in CDM HOME");
-    console.log(this.props.currentUser.user);
-    // let id = this.props.currentUser.user.id;
-    // console.log(id);
-    // if (this.props.currentUser) {
-    //   this.props.getProfileImage(this.props.currentUser.user.id);
-    // }
+    const token = localStorage.getItem("fbct");
+    const decode = jwt_decode(token);
+    
+    this.props.getProfileImage(decode.user.id)
     
   }
 
@@ -26,23 +24,10 @@ class HomeProfile extends Component {
       this.props.getProfileImage(this.props.currentUser.user.id)
     }
   }
-  
-  // componentWillUpdate = (nextProps, nextState) => {
-  //   if (nextProps.currentUser.user !== this.props.currentUser.user) {
-  //     this.props
-  //       .getProfileImage(nextProps.currentUser.user.id)
-  //       .then(res => {
-  //         console.log(res);
-  //       })
-  //       .catch(err => console.log(err));
-  //   }
-  // };
 
   render() {
     let profile;
     let image;
-    console.log("DJWQDUWDQDQW", this.props.currentUser);
-    
 
     if (
       this.props.imageState.image &&

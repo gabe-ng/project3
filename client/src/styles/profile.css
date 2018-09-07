@@ -6,7 +6,6 @@
 }
 
 .profile-bio {
-    border: 1px solid black;
     height: 80vh;
     width: 29vw;
     margin: 0 0 0 auto;
@@ -20,22 +19,58 @@
 }
 
 .image-container {
-    border: 1px solid black;
     width: 90%;
-    height: 28vh;
-    margin: 1em auto;
+    height: 30vh;
+    margin: 1em auto 4em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-image-wrap {
+    width: 240px;
+    height: 260px;
+    margin-bottom: 2em;
 }
 
 .profile-image {
-    width: 200px;
-    height: 230px;
+    width: 100%;
+    border-radius: 5%;
+}
+
+.upload-button {
+    font-size: 1em;
+    padding: .5em 1em;
+    border: none;
+    background: transparent;
+    cursor: pointer;
 }
 
 .about-me-container {
-    border: 1px solid black;
-    width: 90%;
+    width: 100%;
     height: 46vh;
     margin: 0 auto;
 }
 
+.about-me-title {
+    display: flex;
+}
+
+.about-me-edit {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin-top: -.5em;
+    padding-left: .75em;
+}
+
+.about-me-container h1 {
+    font-size: 2em;
+    margin-bottom: .5em;
+}
+
+.about-me-p {
+    font-size: 1.1em;
+    line-height: 1.5;
+}
 

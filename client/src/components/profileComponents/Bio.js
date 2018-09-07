@@ -97,18 +97,19 @@ class Bio extends Component {
           </div>
         );
       } else {
-        aboutMe = (
-          <div className="about-me-container">
-            <h1>About Me</h1>
-            <p>{this.props.userProfile.user.aboutMe}</p>
-            {this.props.userProfile.user.id ===
-            this.props.currentUser.user.id ? (
-              <button onClick={this.toggleEditUpdate}>(Edit)</button>
-            ) : (
-              <p />
-            )}
-          </div>
-        );
+        aboutMe = <div className="about-me-container">
+            <div className="about-me-title">
+              <h1>About Me</h1>
+              {this.props.userProfile.user.id === this.props.currentUser.user.id ? <button
+                  onClick={this.toggleEditUpdate} className="about-me-edit"
+                >
+                  (Edit)
+                </button> : <p />}
+            </div>
+            <p className="about-me-p">
+              {this.props.userProfile.user.aboutMe}
+            </p>
+          </div>;
       }
       if (this.state.uploadPicture) {
         profileImg = (
@@ -121,24 +122,15 @@ class Bio extends Component {
           </div>
         );
       } else {
-        profileImg = (
-          <div className="image-container">
-            {this.props.userProfile.user.id === this.props.currentUser.user.id ?
-              <button onClick={this.toggleUpload}>Upload Picture</button>
-              : <p></p>}
-            {this.props.imageState.image[0] ? (
-              <img
-                src={`http://localhost:3001/profileimage/${
-                  this.props.imageState.image[0].name
-                }`}
-                alt=""
-                className="profile-image"
-              />
-            ) : (
-              <p>No profile image</p>
-            )}
-          </div>
-        );
+        profileImg = <div className="image-container">
+            {this.props.imageState.image[0] ? <div className="profile-image-wrap">
+                <img src={`http://localhost:3001/profileimage/${this.props.imageState.image[0].name}`} alt="" className="profile-image" />
+              </div> : <p>No profile image</p>}
+          {this.props.userProfile.user.id === this.props.currentUser.user.id ? 
+            <button className="upload-button" onClick={this.toggleUpload}>
+            (Upload Picture)
+              </button> : <p />}
+          </div>;
       }
     }
 
