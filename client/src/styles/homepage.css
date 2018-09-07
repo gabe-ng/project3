@@ -24,6 +24,10 @@
     font-size: 2em;
 }
 
+.homepage-profile h2 {
+    align-self: flex-start;
+}
+
 .homepage-image-container {
     width: 11vw;
     height: 21vh;
@@ -46,9 +50,54 @@
 }
 
 .chatbox {
-    border: 1px solid black;
     width: 25vw;
-    height: 50vh;
-    /* align-self: center; */
+    height: 60vh;
     margin: 0 auto 0 0;
 }
+
+.chat-title {
+    font-size: 2em;
+    margin-top: .5em;
+    text-align: center;
+}
+
+.chat-heading {
+    margin: .5em 0 1em;;
+    text-align: center;
+}
+
+.messages {
+    border: 1px solid black;
+    width: 90%;
+    height: 37vh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 3%;
+}
+
+.message {
+    margin: .5em 0 0 .5em;
+}
+
+.chat-input {
+    font-size: 1.1em;
+    margin: 1em .5em 0 1.3em;
+    width: 75%;
+    border: 1px solid black;
+    background: transparent;
+    border-radius: 5px;
+    padding-left: .3em;
+}
+
+.chat-submit {
+    font-size: 1em;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* .chat-submit:hover {
+    background-color: #B3D5E1;
+    color: white;
+} */

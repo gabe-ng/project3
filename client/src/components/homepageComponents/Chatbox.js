@@ -45,17 +45,17 @@ class Chatbox extends Component {
 
   render(){   
     return <div className="chatbox">
-                <div className="chat-title">Let's Chat</div>
+                <h2 className="chat-title">Global Chat</h2>
+                <p className="chat-heading">Send a message to all users!</p>
                 <div className="messages">
                   {this.state.messages.map(message => {
-                    return <div key={message.id}>
+                    return <div key={message.id} className="message" >
                         {message.author}: {message.message}
                       </div>;
                   })}
                 </div>
-              <input type="text" placeholder="Message" value={this.state.message} className="form-control" name="message" onChange={this.handleChange} />
-                <br />
-                <button className="btn btn-primary form-control" onClick={this.sendMessage}>
+              <input type="text" placeholder="Message" value={this.state.message} className="chat-input" name="message" onChange={this.handleChange} />
+                <button className="chat-submit" onClick={this.sendMessage}>
                   Send
                 </button>
             </div>

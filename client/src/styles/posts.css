@@ -1,5 +1,4 @@
 .post-container {
-    border: 1px solid black;
     height: 90vh - 3rem;
     width: 37vw;
     display: flex;
@@ -7,9 +6,26 @@
     align-items: center;
 }
 
+.post-wrap {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.post-container h1 {
+    font-size: 2em;
+    margin: .5em 0 0 .5em;
+}
+
+.post-button {
+   border: none;
+   background: transparent;
+   margin: 1.3em 0 .5em 0;
+   cursor: pointer;
+}
+
 .posts-list {
     margin: auto;
-    border: 1px solid black;
     width: 90%;
     height: 76vh;
     overflow-y: auto;
@@ -21,18 +37,68 @@
     width: 95%;
 }
 
+.post-title {
+    margin: .5em 0 .5em .5em;
+    font-size: 1.6em;
+}
+
+.post-body {
+    margin: 0 0 0 1em;
+    max-width: 90%;
+    line-height: 1.2;
+}
+
+.options {
+    text-align: right;
+    margin: .5em 0 -.5em 0;
+    padding-right: 1em;
+}
+
+.posted-by {
+    text-align: right;
+    margin: .5em 0 -.5em 0;
+    padding-right: 1em;
+}
+
 .comment-list {
-    border: 1px solid red;
     width: 95%;
     margin: 1em auto;
 }
 
+.comment {
+    margin: 1em;
+}
+
+.comment-body {
+    max-width: 90%;
+    line-height: 1.2;
+    margin-bottom: .5em;
+}
+
+.comment-posted-by {
+    font-size: .9em;
+    text-align: right;
+}
+
+.comment-delete {
+    cursor: pointer;
+}
+
 .comment-box {
-    width: 80%;
-    margin: 1em auto;
+    font-size: 1em;
+    width: 75%;
+    margin: 1em .5em 0 1em;
+    background: white;
+}
+
+::placeholder {
+    font-size: .9em;
 }
 
 .comment-submit {
-    display: inline-block;
+    font-size: .9em;
     margin: 0 auto;
+    border: 1px solid white;
+    padding: .1em .5em;
+    cursor: pointer;
 }

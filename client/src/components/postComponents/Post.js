@@ -68,15 +68,15 @@ class Post extends Component {
     if (this.props.post.user && this.props.currentUser) {
       // A user can see the edit and delete options only if they are the post creators
       if (this.props.post.user._id === this.props.currentUser.user.id) {
-        options = <span>
+        options = <p className="options">
             <span className="post-option" data-id={this.props.post._id} onClick={this.props.editPost}>
               Edit
             </span> | <span className="post-option" onClick={() => this.handlePostDelete(this.props.post._id)}>
               Delete
             </span>
-          </span>;
+          </p>;
       } else {
-      options = <span>Posted by {this.props.post.user.username}</span>;
+      options = <p className="posted-by">Posted by {this.props.post.user.username}</p>;
       }
     }
     console.log(this.props.commentState.comments);
@@ -87,19 +87,28 @@ class Post extends Component {
    
     if (this.props.commentState.comments && this.props.commentState.comments.length !== 0 && this.props.currentUser) {
         comments = this.props.commentState.comments.map(comment => {
+
+          let date = comment.dateCreated.slice(0, 10);
+          let date2 = new Date(date);
+          let date3;
+
+          if (!isNaN(date2.getTime())) {
+            // Months use 0 index.
+            date3 = date2.getMonth() + 1 + '/' + date2.getDate() + '/' + date2.getFullYear();
+          }
+
           if(this.props.post._id === comment.post._id) {
             return <div className="comment" key={comment._id}>
-                <p>{comment.title}</p>
-              <p>{comment.body}</p>
+              <p className="comment-body">{comment.body}</p>
               {comment.user._id === this.props.currentUser.user.id
-                  ? <p>
-                    Posted By: {comment.user.username} on {comment.dateCreated}
-                    <span className="" onClick={() => this.handleCommentDelete(comment._id)}>
-                      Delete
+                  ? <p className="comment-posted-by">
+                    Posted By: {comment.user.username} on {date3} - 
+                    <span className="comment-delete" onClick={() => this.handleCommentDelete(comment._id)}>
+                     {" "}Delete
                 </span>
                   </p>
-                  : <p>
-                    Posted By: {comment.user.username} on {comment.dateCreated}
+                :  <p className="comment-posted-by">
+                    Posted By: {comment.user.username} on {date3}
                   </p>}
             </div>;
           }
@@ -110,8 +119,8 @@ class Post extends Component {
     }
 
     return <div className="post">
-        <h3>{this.props.post.title}</h3>
-        <p>{this.props.post.body}</p>
+        <h3 className="post-title">{this.props.post.title}</h3>
+        <p className="post-body">{this.props.post.body}</p>
         {options}
         <ul className="comment-list">
           <form onSubmit={this.handleSubmit} id={`comment-form-${this.props.post._id}`} data-id={`${this.props.post._id}`}>

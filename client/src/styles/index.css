@@ -4,3 +4,7 @@ body {
     background-color: #B3D5E1;
     font-family: 'Nunito', sans-serif;
 }
+
+textarea:focus, input:focus, button:focus {
+    outline: none;
+}
