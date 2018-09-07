@@ -107,6 +107,14 @@ const createUser = (req, res) => {
             });
           });
 
+          let newDefaultImage = new db.ProfileImage({
+            name: "myImage-1536335634446.png",
+          })
+
+          newDefaultImage.user = newUser._id;
+
+          newDefaultImage.save();
+
           let user = {
             id: newUser._id,
             name: newUser.name,
