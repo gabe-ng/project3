@@ -49,7 +49,7 @@ class SignUp extends Component {
     render() {
         return <div className="center">
             <div className="card">
-                <h1>Sign Up</h1>
+                <h2>Sign Up</h2>
                 <form onSubmit={this.handleFormSubmit}>
                     <input className="form-item" placeholder="Full name goes here..." name="name" type="text" onChange={this.handleChange} />
                     <input className="form-item" placeholder="Username goes here..." name="username" type="text" onChange={this.handleChange} />

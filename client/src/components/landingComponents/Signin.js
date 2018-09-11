@@ -39,7 +39,7 @@ class SignIn extends Component {
     render () {
         return <div className="center">
             <div className="card">
-              <h1>Login</h1>
+              <h2>Login</h2>
               <form onSubmit={this.handleFormSubmit}>
                 <input className="form-item" placeholder="Username goes here..." name="username" type="text" onChange={this.handleChange} />
                 <input className="form-item" placeholder="Password goes here..." name="password" type="password" onChange={this.handleChange} />

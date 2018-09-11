@@ -107,55 +107,11 @@
     cursor: pointer;
 }
 
-.create-post {
-    height: 20vh;
-    width: 20vw;
+.form-item.form-title {
+    width: 20rem;
 }
 
-.create-post h1,
-.edit-post h1 {
-    text-align: center;
-}
-
-.create-post-form,
-.edit-post-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.create-post-title,
-.edit-post-title {
-    font-size: 1.1em;
-    margin: 1em auto;
-    width: 26vw;
-    padding-left: .3em;
-}
-
-.create-post-title {
-    margin: 1em 0;
-}
-
-.create-post-body,
-.edit-post-body {
-    font-size: 1.1em;
-    height: 10vh;
-    width: 26vw;
-    margin-bottom: .75em;
-    padding-left: .3em;
-}
-
-.create-post-submit,
-.edit-post-submit {
-    font-size: 1.1em;
-    border: 1px solid black;
-    background: transparent;
-    cursor: pointer;
-}
-
-.create-post input::placeholder,
-.create-post textarea::placeholder,
-.edit-post input::placeholder,
-.edit-post textarea::placeholder {
-    font-size: .8em;
+.form-item.form-text {
+    width: 20rem;
+    height: 8rem;
 }

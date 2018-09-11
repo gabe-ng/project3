@@ -12,7 +12,6 @@
     margin: 0 5rem;
     width: 20vw;
     height: 50vh;
-    /* justify-self: flex-start; */
 }
 
 /* ******** Landing Container ******** */
@@ -35,7 +34,7 @@
     flex-direction: column;
 }
 
-.card h1{
+.card h2{
     font-size: 1.5em;
     text-align: center;
     margin-top: 0;
@@ -52,7 +51,6 @@
 }
 
 .form-submit{
-    /* font-family: 'Raleway', sans-serif; */
     height: 35px;
     color: #fff;
     background-color: rgb(159, 208, 226);
