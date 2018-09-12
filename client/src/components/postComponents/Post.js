@@ -18,12 +18,11 @@ class Post extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Submitted', this.state.comment);
+
     if (this.state.comment !== "") {
       let comment = { body: this.state.comment };
       let userId = this.props.currentUser.user.id;
       let postId = e.target.getAttribute("data-id");
-      console.log(comment, userId, postId);
       
       this.props.createComment(comment, userId, postId)
         .then(() => {
@@ -52,8 +51,7 @@ class Post extends Component {
   componentDidMount = () => {
     this.props.getComments()
       .then(res => {
-        console.log(res);
-        console.log("fetched post comments");
+        // blank, fetched post comments
       })
       .catch(err => {
         console.log(err); 
@@ -61,8 +59,7 @@ class Post extends Component {
   }
   
   render() {
-    console.log(this.state.comment);
-    
+     
     let options;
     // Wait for user attribute to load
     if (this.props.post.user && this.props.currentUser) {
@@ -79,9 +76,6 @@ class Post extends Component {
       options = <p className="posted-by">Posted by {this.props.post.user.username}</p>;
       }
     }
-    console.log(this.props.commentState.comments);
-
-    
     
     let comments;
    

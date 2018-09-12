@@ -26,7 +26,6 @@ export const getProfileImage = (userId) => {
 
         return axios.get("http://localhost:3001/api/profileimages/" + userId)
             .then(res => {
-                console.log(res);
                 return dispatch(profileImageSuccess(res.data))
             })
             .catch(() => dispatch(profileImageError))

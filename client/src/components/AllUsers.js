@@ -13,8 +13,7 @@ class AllUsers extends Component {
     }
 
     render () {
-        console.log(this.props.state);
-        
+
         let userList;
         if (this.props.state.users) {
             userList = this.props.state.users.users.map(user => {

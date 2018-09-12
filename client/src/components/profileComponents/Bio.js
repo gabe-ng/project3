@@ -16,10 +16,9 @@ class Bio extends Component {
   };
 
   componentDidMount = () => {
-    console.log(this.props.userId);
     this.props.getProfileImage(this.props.userId)
       .then(res => {
-        console.log(res);
+        // blank, fetched profile image
       })
       .catch(err => console.log(err))
   };
@@ -28,7 +27,7 @@ class Bio extends Component {
     if (nextProps.userId !== this.props.userId) {
       this.props.getProfileImage(nextProps.userId)
         .then(res => {
-          console.log(res)
+          // blank, fetched profile image
         })
         .catch(err => console.log(err))
     }
@@ -63,9 +62,6 @@ class Bio extends Component {
 
     this.props
       .updateUser(userId, update)
-      .then(res => {
-        console.log(res);
-      })
       .then(() => {
         this.setState({
           editingAboutMe: false
@@ -79,7 +75,6 @@ class Bio extends Component {
   render() {
     let profileImg;
     let aboutMe;
-    console.log(this.props);
 
     if (this.props.userProfile && this.props.currentUser) {
       if (this.state.editingAboutMe) {

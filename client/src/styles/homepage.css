@@ -3,7 +3,6 @@
     width: 100vw;
     margin-top: 3rem;
     display: flex;
-    /* justify-content: space-around; */
 }
 
 .profile-friends-wrap {
@@ -11,7 +10,6 @@
 }
 
 .homepage-profile {
-    /* border: 1px solid black; */
     height: 20vh;
     width: 22vw;
     display: flex;
@@ -43,7 +41,6 @@
 }
 
 .homepage-friends {
-    /* border: 1px solid black; */
     height: 45vh;
     width: 22vw;
     margin-top: 9rem;

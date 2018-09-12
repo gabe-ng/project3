@@ -44,10 +44,7 @@ class EditPostForm extends Component {
   }
 
   render() {
-    console.log(this.props);
-    console.log(this.state);
-    
-    let placeholder = this.state.body; // FIX THIS ))))))):
+    let placeholder = this.state.body;
     return (
       <div>
         <div className="card">

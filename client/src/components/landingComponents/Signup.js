@@ -23,8 +23,6 @@ class SignUp extends Component {
 
     handleFormSubmit = (e) => {
         e.preventDefault();
-        console.log("in sign up submit");
-        console.log(this.state);
         
         if (this.state.password !== this.state.passwordConfirmation) {
 
@@ -35,8 +33,6 @@ class SignUp extends Component {
             this.props
               .signUp(userData)
               .then((response) => {
-                console.log(response);
-                  
                 if (response.type !== "SIGN_UP_ERROR")
                     this.props.history.push("/homepage");
               })

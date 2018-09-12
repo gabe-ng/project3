@@ -10,7 +10,7 @@ class Posts extends Component {
   componentDidMount = () => {
     this.props.getPosts()
       .then(res => {
-        console.log("fetched posts");
+       // blank, fetched posts
       })
       .catch(err => {
         console.log(err);   
@@ -22,7 +22,7 @@ class Posts extends Component {
       this.props
         .getPosts()
         .then(res => {
-          console.log("fetched posts");
+          // blank, fetched posts
         })
         .catch(err => {
           console.log(err);

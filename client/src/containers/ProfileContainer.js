@@ -22,7 +22,7 @@ class ProfileContainer extends Component {
     this.props
       .getUserProfile(id)
       .then(response => {
-        console.log("fetched user info");
+        // blank, fetched user info
       })
       .catch(err => {
         console.log(err);
@@ -35,7 +35,7 @@ class ProfileContainer extends Component {
       this.props
         .getUserProfile(id)
         .then(response => {
-          console.log("fetched user info");
+          // blank, fetched user info
         })
         .catch(err => {
           console.log(err);
@@ -44,8 +44,7 @@ class ProfileContainer extends Component {
   };
 
   render() {
-    console.log(this.props.state.profileInfo);
-    
+
     return (
       <div className="profile-container">
         <Bio userProfile={this.props.state.profileInfo} currentUser={this.props.currentUser} userId={this.props.match.params.user_id} />

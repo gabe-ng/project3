@@ -14,7 +14,7 @@ class Chatbox extends Component {
     })
   }
 
-
+  // have socket.io listen on backend port
   socket = io('http://localhost:3001');
 
   componentDidMount = () => {
@@ -24,9 +24,7 @@ class Chatbox extends Component {
   }
   
   addMessage = data => {
-    console.log(data);
     this.setState({ messages: [...this.state.messages, data] });
-    console.log(this.state.messages);
   };
 
   sendMessage = e => {

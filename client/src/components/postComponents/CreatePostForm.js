@@ -25,7 +25,6 @@ class CreatePostForm extends Component {
 
     this.props.createPost(newPost, userId)
         .then(res => {
-            console.log(res);
             this.props.close();
         })
         .catch(err => {
@@ -34,8 +33,7 @@ class CreatePostForm extends Component {
   };
 
   render() {
-      console.log(this.props.currentUser);
-      
+
     return (
       <div>
             <div className="card">

@@ -14,8 +14,7 @@ class HomepageContainer extends Component {
     }
   }
   render() {    
-    console.log(this.props.currentUser);
-
+    
     return <div className="homepage-container">
         <div className="profile-friends-wrap">
           <HomeProfile currentUser={this.props.currentUser}/>

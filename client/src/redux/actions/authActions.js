@@ -66,7 +66,6 @@ export const signUp = userData => {
 
     return axios.post("http://localhost:3001/api/users/create", userData)
       .then(res => {
-        console.log("sign action res", res);
         localStorage.setItem("fbct", res.data.token);
         const decoded = jwt_decode(res.data.token);
         return dispatch(signUpSuccess(decoded));
@@ -83,7 +82,6 @@ export const logIn = userData => {
 
     return axios.post("http://localhost:3001/api/users/login", userData)
         .then(res => {
-          console.log("login action res", res);
           localStorage.setItem("fbct", res.data.token);
           const decoded = jwt_decode(res.data.token);
           return dispatch(logInSuccess(decoded));

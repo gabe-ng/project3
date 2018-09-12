@@ -19,18 +19,6 @@ export const getCommentsSuccess = (comments) => {
     }
 }
 
-// export const getComments = (postId) => {
-//     return dispatch => {        
-//         dispatch(gettingComments());
-
-//         return axios.get("http://localhost:3001/api/comments/" + postId)
-//             .then(res => {
-//                 return dispatch(getCommentsSuccess(res.data));
-//             })
-//             .catch(err => console.log(err))
-//     }
-// };
-
 export const getComments = () => {
     return dispatch => {        
         dispatch(gettingComments());
@@ -69,7 +57,6 @@ export const createComment = (comment, userId, postId) => {
 
         return axios.post(`http://localhost:3001/api/comments/create/${userId}/${postId}`, comment)
             .then(res => {
-                console.log(res);
                 dispatch(createCommentSuccess(res.data))
             })
             .catch(dispatch(createCommentError()));

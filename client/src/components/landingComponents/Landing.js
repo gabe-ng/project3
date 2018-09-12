@@ -11,12 +11,11 @@ class Landing extends Component {
   render() {
     return (
       <div className="landing-container">
-        <div id="particles-js"></div>
+        <div></div>
         <Switch>
           <Route path="/signin" render={props => <Signin {...props} />} />
           <Route path="/signup" render={props => <Signup {...props} />} />
         </Switch>
-    
       </div>
     );
   }

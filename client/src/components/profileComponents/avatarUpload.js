@@ -20,7 +20,6 @@ class avatarUpload extends Component {
 
         this.props.uploadProfileImage(userId, data)
             .then((res) => {
-                console.log(res);
                 document.querySelector("form").reset();
                 this.props.getProfileImage(this.props.userId);
             })

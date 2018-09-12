@@ -31,8 +31,6 @@ export const showUserProfile = (userInfo) => {
 
 export const getUserProfile = (userId) => {
     return dispatch => {
-        console.log("in getUserProfile");
-        
         dispatch(gettingUserProfile());
         return axios.get("http://localhost:3001/api/users/"+userId)
             .then(res => {

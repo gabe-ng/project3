@@ -17,9 +17,6 @@ class HomeProfile extends Component {
   }
 
   componentDidUpdate = (prevProps, prevState) => {
-    console.log("in CDU", prevProps.currentUser);
-    console.log("in CDU", this.props.currentUser);
-    
     if (prevProps.currentUser.user !== this.props.currentUser.user) {
       this.props.getProfileImage(this.props.currentUser.user.id)
     }
