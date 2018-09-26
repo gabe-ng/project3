@@ -75,7 +75,7 @@ class Navbar extends Component {
     }
     return (
       <div className="navbar">
-        <h1 className="navbar-title">PROJECT3</h1>
+        <h1 className="navbar-title">Social Scape</h1>
         {options}
       </div>
     );
