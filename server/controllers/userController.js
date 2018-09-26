@@ -108,7 +108,7 @@ const createUser = (req, res) => {
           });
 
           let newDefaultImage = new db.ProfileImage({
-            name: "WHAT THE FUCL",
+            name: "default.png",
           })
 
           newDefaultImage.user = newUser._id;
