@@ -29,16 +29,18 @@ class avatarUpload extends Component {
 
     render () {
 
-        return (
-        <div>
-            <h1>Upload your profile picture</h1>
-            <button onClick={this.props.toggleUpload} >Cancel</button>
+        return <div className="image-upload card">
+            <h2>Upload your profile picture</h2>
             <form onSubmit={this.handleOnSubmit} encType="multipart/form-data">
+              <label className="form-submit image-uploader">
                 <input name="myImage" type="file" id="image-input" onChange={this.handleChange} />
-                <input name="submit" type="submit" value="Upload" />
+              </label>
+              <input name="submit" type="submit" value="Upload" className="image-upload-submit form-submit " />
+              <button onClick={this.props.toggleUpload} className="form-submit image-upload-cancel">
+                Cancel
+              </button>
             </form>
-        </div>
-        )
+          </div>;
     }
 }
 
