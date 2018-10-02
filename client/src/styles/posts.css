@@ -69,6 +69,10 @@
     margin: 1em auto;
 }
 
+.comment-list form {
+    margin-bottom: 1em;
+}
+
 .comment {
     margin: 1em;
 }
