@@ -2,7 +2,7 @@
 
 ## Introduction
 
-> This project is a small scale version of the social media app Facebook. I wanted to create a full stack web application using react and redux along with node.js.
+> This project is a social media platform inspired by Facebook. I wanted to create a full stack web application using react and redux along with node.js.
 
 ## Built With
 
@@ -31,7 +31,7 @@
 
 * Users can send friend requests to other users/accept or reject requests sent to them.
 * Users will have access to a "friend only" chatroom
-* Users can add pictures to posts
+* Users can add pictures or videos to posts
 
 ## Wireframes
 
