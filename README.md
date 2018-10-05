@@ -19,7 +19,7 @@
 
 ## Existing Features
 
-* User account creation/storage with password hasing
+* User account creation/storage with password hashing
 * User authentication via json web tokens on sign in or sign up
 * Default user profile images with the option to upload and store new ones
 * Scrollable post feed that users can post to/comment on existing posts
